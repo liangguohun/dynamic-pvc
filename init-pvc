@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+while [ $# -gt 0 ];
+do 
+  case $1 in
+  -nfs.server) NFS_SERVER=$2 
+      	       shift
+ 	       ;;
+	
+  -nfs.path) NFS_PATH=$2
+	     shift
+	     ;;
+  esac
+  shift
+done
+
+echo '==========================='
+
+TEM_DEP=deployment.yaml.bak$(date '+%Y%m%d%H%M%S')
+cp deployment.yaml $TEM_DEP
+
+sed -i "s/value: x.x.x.x/value: $NFS_SERVER/g" $TEM_DEP
+sed -i "s/server: x.x.x.x/server: $NFS_SERVER/g" $TEM_DEP
+sed -i "s#value: nfs-path#value: $NFS_PATH#g" $TEM_DEP
+sed -i "s#path: nfs-path#path: $NFS_PATH#g" $TEM_DEP
+
+kubectl create -f rbac.yaml -f $TEM_DEP -f class.yaml

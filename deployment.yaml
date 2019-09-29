@@ -1,8 +1,8 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: nfs-client-provisioner
----
+#apiVersion: v1
+#kind: ServiceAccount
+#metadata:
+#  name: nfs-client-provisioner
+#---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
@@ -27,11 +27,11 @@ spec:
             - name: PROVISIONER_NAME
               value: fuseim.pri/ifs
             - name: NFS_SERVER
-              value: 192.168.1.4
+              value: x.x.x.x
             - name: NFS_PATH
-              value: /data/nfs
+              value: nfs-path
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 192.168.1.4
-            path: /data/nfs
+            server: x.x.x.x
+            path: nfs-path

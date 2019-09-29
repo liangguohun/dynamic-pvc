@@ -11,5 +11,5 @@ chmod u+x init-pvc
 
 3、创建日常操作的pvc和pod(初始化后，没个新部署都这里一条命令ok)
 
-kubectl delete -f test-claim.yaml -f test-pod.yaml
+kubectl create -f test-claim.yaml -f test-pod.yaml
 

@@ -1,0 +1,19 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: veryNginx-pod
+spec:
+  containers:
+  - name: veryNginx-pod
+    image: camilb/docker-verynginx
+    ports:
+      - name: veryNginx-web
+        containerPort: 80
+    volumeMounts:
+      - name: nfs-pvc
+        mountPath: "/mnt"
+  restartPolicy: "Never"
+  volumes:
+    - name: nfs-pvc
+      persistentVolumeClaim:
+        claimName: veryNginx-claim

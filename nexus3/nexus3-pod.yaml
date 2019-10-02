@@ -9,22 +9,19 @@ spec:
     volumeMounts:
       - name: nfs-pvc
         mountPath: "/nexus-data"
-    ports:        　　　　　　        #需要暴露的端口库号列表
-    - name: nexus3-web      　　　        #端口的名称
-      containerPort: 8081                #容器需要监听的端口号
-      hostPort: 8081     　　             #容器所在主机需要监听的端口号，默认与Container相同
-      protocol: TCP                  #端口协议，支持TCP和UDP，默认TCP
+    ports:  
+    - name: nexus3-web 
+      containerPort: 8081 
+      hostPort: 8081
+      protocol: TCP
     - name: nexus3-https
       containerPort: 443
-    - name: nexus3-docker-regist
+    - name: nexus3-regist
       containerPort: 8083
-    - name: nexus3-docker-push
+    - name: nexus3-push
       containerPort: 5000
   restartPolicy: "Never"
   volumes:
     - name: nfs-pvc
-      nfs: 
-        server: 192.168.1.4
-        path: /nexus-data
       persistentVolumeClaim:
         claimName: nexus3-claim

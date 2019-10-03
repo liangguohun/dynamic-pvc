@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: veryNginx-svc
+  name: verynginx-svc
   labels: 
-    name: veryNginx-svc
+    name: verynginx-svc
 spec:
   type: NodePort
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
-    name: veryNginx
+    name: verynginx
     nodePort: 30080
   selector:
-    name: veryNginx-pod
+    name: verynginx-pod

@@ -1,30 +1,30 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: veryNginx-rc
+  name: verynginx-rc
   labels:
-    name: veryNginx-rc
+    name: verynginx-rc
 spec:
   replicas: 1
   selector:
-    name: veryNginx-pod
+    name: verynginx-pod
   template:
     metadata:
       labels: 
-        name: veryNginx-pod
+        name: verynginx-pod
     spec:
       containers:
-      - name: veryNginx
+      - name: verynginx
         image: camil/verynginx:v0.3.3.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         - containerPort: 443
         volumeMounts:
-          - name: veryNginx-cfg
+          - name: verynginx-cfg
             mountPath: "/etc/nginx/conf.d"
       restartPolicy: "Always"
       volumes:
-        - name: veryNginx-cfg
+        - name: verynginx-cfg
           persistentVolumeClaim:
-            claimName: veryNginx-claim
+            claimName: verynginx-claim

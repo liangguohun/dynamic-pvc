@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: veryNginx-claim
+  name: verynginx-claim
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:

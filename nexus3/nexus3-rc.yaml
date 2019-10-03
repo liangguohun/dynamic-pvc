@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nexus3-rc
+  labels:
+    name: nexus3-rc
+spec:
+  replicas: 1
+  selector:
+    name: nexus3-pod
+  template:
+    metadata:
+      labels: 
+        name: nexus3-pod
+    spec:
+      containers:
+      - name: nexus3-pod
+        image: sonatype/nexus3:3.15.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: nexus3-web 
+          containerPort: 8081
+        - name: nexus3-https
+          containerPort: 8443
+        - name: nexus3-regist
+          containerPort: 8083
+        - name: nexus3-push
+          containerPort: 5000
+        env:
+        - name: LAUNCHER_CONF
+          value: "./conf/jetty.xml ./conf/jetty-requestlog.xml ./conf/jetty-https.xml"
+        volumeMounts:
+          - name: nfs-pvc
+            mountPath: "/nexus-data"
+      restartPolicy: "Always"
+      volumes:
+        - name: nfs-pvc
+          persistentVolumeClaim:
+            claimName: nexus3-claim

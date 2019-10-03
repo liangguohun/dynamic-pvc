@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nexus3-service
+  name: nexus3-svc
   labels: 
     name: nexus3-svc
 spec:
@@ -10,13 +10,13 @@ spec:
   type: NodePort
   ports:
     - name: nexus3-web
-      port: 8881
+      port: 8081
       targetPort: 8081
-      nodePort: 8881
+      nodePort: 8081
     - name: nexus3-https
-      port: 443
-      targetPort: 443
-      nodePort: 443
+      port: 8443
+      targetPort: 8443
+      nodePort: 8443
     - name: nexus3-docker-regist
       port: 8083
       targetPort: 8083
@@ -25,3 +25,17 @@ spec:
       port: 5000
       targetPort: 5000
       nodePort: 5000
+#---
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: nexus3-ingress
+#spec:
+#  rules:
+#  - host: nexus.letee.top
+#    http:
+#      paths:
+#      - path: /
+#        backend:
+#          serviceName: nexus3-svc
+#          servicePort: 8081

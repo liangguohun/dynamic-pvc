@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: codepush-rc
+  labels:
+    name: codepush-rc
+spec:
+  replicas: 1
+  selector:
+    name: codepush-pod
+  template:
+    metadata:
+      labels: 
+        name: codepush-pod
+    spec:
+      containers:
+      - name: codepush
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+          - name: codepush-cfg
+            mountPath: "/etc/nginx/conf.d"
+      restartPolicy: "Always"
+      volumes:
+        - name: codepush-cfg
+          persistentVolumeClaim:
+            claimName: codepush-claim

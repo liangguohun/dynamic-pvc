@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: gitlab-rc
+  labels:
+    name: gitlab-rc
+spec:
+  replicas: 1
+  selector:
+    name: gitlab-pod
+  template:
+    metadata:
+      labels: 
+        name: gitlab-pod
+    spec:
+      containers:
+      - name: gitlab
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+          - name: gitlab-cfg
+            mountPath: "/etc/nginx/conf.d"
+      restartPolicy: "Always"
+      volumes:
+        - name: gitlab-cfg
+          persistentVolumeClaim:
+            claimName: gitlab-claim

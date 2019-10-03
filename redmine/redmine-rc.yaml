@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redmine-rc
+  labels:
+    name: redmine-rc
+spec:
+  replicas: 1
+  selector:
+    name: redmine-pod
+  template:
+    metadata:
+      labels: 
+        name: redmine-pod
+    spec:
+      containers:
+      - name: redmine
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+          - name: redmine-cfg
+            mountPath: "/etc/nginx/conf.d"
+      restartPolicy: "Always"
+      volumes:
+        - name: redmine-cfg
+          persistentVolumeClaim:
+            claimName: redmine-claim

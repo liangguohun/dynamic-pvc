@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: yapi-rc
+  labels:
+    name: yapi-rc
+spec:
+  replicas: 1
+  selector:
+    name: yapi-pod
+  template:
+    metadata:
+      labels: 
+        name: yapi-pod
+    spec:
+      containers:
+      - name: yapi
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+          - name: yapi-cfg
+            mountPath: "/etc/nginx/conf.d"
+      restartPolicy: "Always"
+      volumes:
+        - name: yapi-cfg
+          persistentVolumeClaim:
+            claimName: yapi-claim

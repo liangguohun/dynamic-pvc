@@ -2,19 +2,26 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nexus3-service
+  labels: 
+    name: nexus3-svc
 spec:
   selector: 
     app: nexus3-pod         #对应对应的pod/Deployment
+  type: NodePort
   ports:
     - name: nexus3-web
       port: 8881
       targetPort: 8081
+      nodePort: 8881
     - name: nexus3-https
       port: 443
       targetPort: 443
+      nodePort: 443
     - name: nexus3-docker-regist
       port: 8083
       targetPort: 8083
+      nodePort: 8083
     - name: nexus3-docker-push
       port: 5000
       targetPort: 5000
+      nodePort: 5000

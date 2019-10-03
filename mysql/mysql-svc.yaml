@@ -11,6 +11,6 @@ spec:
     protocol: TCP
     targetPort: 3306
     name: http
-    nodePort: 4306
+    nodePort: 31306
   selector:
     name: mysql-pod

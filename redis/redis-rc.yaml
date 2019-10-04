@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    name: redis
+  template:
+    metadata:
+      name: redis
+      labels:
+        name: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:5.0.6-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: redis
+          containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: data
+        - mountPath: /usr/local/etc/redis  #需定制自己的镜像
+          name: redis-config
+        livenessProbe:  #存活探针
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe: #就绪探针  如果Pod处于非就绪状态，那么它们将会被从service的load balancer中移除
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: redis-claim
+        #emptyDir: {} #pod 离开该宿主机时会被清除，只能临时
+      - name: redis-config
+        configMap:
+          name: redis-config
+          items:
+          - key: redis-config
+            path: redis.conf

@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitlab-claim
+  name: redis-claim
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -9,4 +9,4 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi
+      storage: 3Gi

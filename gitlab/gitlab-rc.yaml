@@ -15,9 +15,12 @@ spec:
     spec:
       containers:
       - name: gitlab
-        image: 
+        image: gitlab/gitlab-ce:12.3.4-ce.0
         imagePullPolicy: IfNotPresent
+        args: 
+          - --detach
         ports:
+        - containerPort: 22
         - containerPort: 80
         - containerPort: 443
         volumeMounts:

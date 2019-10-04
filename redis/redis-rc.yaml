@@ -17,15 +17,15 @@ spec:
         image: redis:5.0.6-alpine
         imagePullPolicy: IfNotPresent
         command: ["redis-server"]
-        args: ["/data/redis.conf"]
+        args: ["/usr/local/etc/redis/redis.conf"]
         ports:
         - name: redis
           containerPort: 6379
         volumeMounts:
         - mountPath: /data
           name: data
-        #- mountPath: /usr/local/etc/redis  #需定制自己的镜像
-        #  name: redis-config
+        - mountPath: /usr/local/etc/redis  #需定制自己的镜像
+          name: redis-config
         livenessProbe:  #存活探针
           exec:
             command:
@@ -45,9 +45,9 @@ spec:
         persistentVolumeClaim:
           claimName: redis-claim
         #emptyDir: {} #pod 离开该宿主机时会被清除，只能临时
-      #- name: redis-config
-      #  configMap:
-      #    name: redis-config
-      #    items:
-      #    - key: redis-config
-      #      path: redis.conf
+      - name: redis-config
+        configMap:
+          name: redis-config
+          items:
+          - key: redis.conf
+            path: redis.conf

@@ -26,9 +26,9 @@ spec:
           containerPort: 8083
         - name: nexus3-push
           containerPort: 5000
-        env:
-        - name: LAUNCHER_CONF
-          value: "./conf/jetty.xml ./conf/jetty-requestlog.xml ./conf/jetty-https.xml"
+        # env:
+        # - name: LAUNCHER_CONF
+        #   value: "./conf/jetty.xml ./conf/jetty-requestlog.xml ./conf/jetty-https.xml"
         volumeMounts:
           - name: nfs-pvc
             mountPath: "/nexus-data"
@@ -36,4 +36,7 @@ spec:
       volumes:
         - name: nfs-pvc
           persistentVolumeClaim:
-            claimName: nexus3-claim
+            claimName: nexus3-claim                 
+# docker pull alpine:3.5
+# docker tag alpine:3.5 192.168.1.4:5000/alpine:3.5
+# docker push 192.168.1.4:5000/alpine:3.5

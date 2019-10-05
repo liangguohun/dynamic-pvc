@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+(
+cat <<EOF
+{
+  "registry-mirrors": ["http://192.168.1.4:8443"],
+  "insecure-registries":["192.168.1.4:8443","192.168.1.4:5000"]
+}
+EOF
+) >/etc/docker/daemon.json
+
+systemctl daemon-reload
+systemctl restart docker
+
+#docker login 192.168.1.4:5000
+#admin/admin123

@@ -1,30 +1,30 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nexus3-svc
+  name: nexus3
   labels: 
-    name: nexus3-svc
+    name: nexus3
 spec:
-  selector: 
-    app: nexus3-pod         #对应对应的pod/Deployment
   type: NodePort
   ports:
     - name: nexus3-web
       port: 8081
-      targetPort: 8081
+      targetPort: nexus3-web
       nodePort: 8081
     - name: nexus3-https
       port: 8443
-      targetPort: 8443
+      targetPort: nexus3-https
       nodePort: 8443
-    - name: nexus3-docker-regist
+    - name: nexus3-regist
       port: 8083
-      targetPort: 8083
+      targetPort: nexus3-regist
       nodePort: 8083
-    - name: nexus3-docker-push
+    - name: nexus3-push
       port: 5000
-      targetPort: 5000
+      targetPort: nexus3-push
       nodePort: 5000
+  selector: 
+    name: nexus3         #对应对应的pod/Deployment
 #---
 #apiVersion: extensions/v1beta1
 #kind: Ingress

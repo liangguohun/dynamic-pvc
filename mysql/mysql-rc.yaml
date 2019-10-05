@@ -28,6 +28,8 @@ spec:
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "Hgxxmm.@6"
+        - name: TZ
+          value: Asia/Shanghai
         volumeMounts:
           - name: mysql-data
             mountPath: "/var/lib/mysql"

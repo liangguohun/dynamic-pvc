@@ -15,7 +15,9 @@ spec:
       containers:
       - name: postgresql
         image: postgres:12.0-alpine
-        env:
+        env:  # 规范时区
+        - name: TZ
+          value: Asia/Shanghai
         - name: POSTGRES_USER        #超级用户
           value: gitlab       #默认密码postgres
         - name: POSTGRES_PASSWORD

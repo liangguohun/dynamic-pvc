@@ -16,6 +16,9 @@ spec:
       - name: redis
         image: redis:5.0.6-alpine
         imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
         command: ["redis-server"]
         args: ["/usr/local/etc/redis/redis.conf"]
         ports:

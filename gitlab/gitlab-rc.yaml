@@ -17,17 +17,33 @@ spec:
       - name: gitlab
         image: gitlab/gitlab-ce:12.3.4-ce.0
         imagePullPolicy: IfNotPresent
-        args: 
-          - --detach
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        # args: 
+        #   - --detach
         ports:
-        - containerPort: 22
-        - containerPort: 80
-        - containerPort: 443
+        - name: gitlab-ssh
+          containerPort: 22
+        - name: gitlab-port
+          containerPort: 80
+        - name: gitlab-https
+          containerPort: 443
         volumeMounts:
           - name: gitlab-cfg
-            mountPath: "/etc/nginx/conf.d"
+            mountPath: "/etc/gitlab"
+          - name: gitlab-log
+            mountPath: "/var/log/gitlab"
+          - name: gitlab-data
+            mountPath: "/var/opt/gitlab"
       restartPolicy: "Always"
       volumes:
         - name: gitlab-cfg
           persistentVolumeClaim:
-            claimName: gitlab-claim
+            claimName: gitlab-cfg
+        - name: gitlab-log
+          persistentVolumeClaim:
+            claimName: gitlab-log
+        - name: gitlab-data
+          persistentVolumeClaim:
+            claimName: gitlab-data

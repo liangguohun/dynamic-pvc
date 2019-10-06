@@ -1,7 +1,33 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitlab-claim
+  name: gitlab-cfg
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gitlab-log
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gitlab-data
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:

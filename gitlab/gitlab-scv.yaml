@@ -9,8 +9,13 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 80
-    name: gitlab
-    nodePort: 30080
+    targetPort: gitlab-port
+    name: gitlab-port
+    nodePort: 8888
+  - port: 22
+    protocol: TCP
+    targetPort: gitlab-ssh
+    name: gitlab-ssh
+    nodePort: 2222
   selector:
     name: gitlab-pod

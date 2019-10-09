@@ -13,3 +13,7 @@ chmod u+x init-pvc
 
 kubectl create -f test-claim.yaml -f test-pod.yaml
 
+---
+
+### 查找可用镜像
+./list_img_tags.sh gitlab/gitlabt-ce

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc
+  labels: 
+    name: mongo-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 27017
+    protocol: TCP
+    targetPort: mongo
+    nodePort: 27017
+  selector:
+    name: mongo-pod

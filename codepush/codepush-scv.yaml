@@ -7,10 +7,13 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-    name: codepush
-    nodePort: 30080
+  - name: cpdownload
+    port: 3001
+    targetPort: cpdownload
+    nodePort: 3001
+  - name: cpweb
+    port: 3002
+    targetPort: cpweb
+    nodePort: 3002
   selector:
     name: codepush-pod

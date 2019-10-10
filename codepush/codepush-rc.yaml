@@ -15,16 +15,21 @@ spec:
     spec:
       containers:
       - name: codepush
-        image: 
+        image: 192.168.1.4:5000/min_codepush:v1.0
         imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
         ports:
-        - containerPort: 80
-        - containerPort: 443
+        - containerPort: 3001
+          name: cpdownload
+        - containerPort: 3002
+          name: cpweb
         volumeMounts:
-          - name: codepush-cfg
-            mountPath: "/etc/nginx/conf.d"
+          - name: codepush-data
+            mountPath: "/data"
       restartPolicy: "Always"
       volumes:
-        - name: codepush-cfg
+        - name: codepush-data
           persistentVolumeClaim:
             claimName: codepush-claim

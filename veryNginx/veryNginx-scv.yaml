@@ -11,6 +11,11 @@ spec:
     protocol: TCP
     targetPort: 80
     name: verynginx
-    nodePort: 30080
+    nodePort: 80
   selector:
     name: verynginx-pod
+
+# docker build -t 192.168.1.4:5000/verynginx-alpine .
+# docker run -d --name=verynginx -p 9999:80 192.168.1.4:5000/verynginx-alpine
+# docker logs --tail 30 verynginx
+# 浏览器打开 http://192.168.1.4:9999/verynginx/index.html  默认账户verynginx/verynginx

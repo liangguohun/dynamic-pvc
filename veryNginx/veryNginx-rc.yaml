@@ -15,16 +15,9 @@ spec:
     spec:
       containers:
       - name: verynginx
-        image: camil/verynginx:v0.3.3.1
+        image: 192.168.1.4:5000/verynginx-alpine
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-        - containerPort: 443
-        volumeMounts:
-          - name: verynginx-cfg
-            mountPath: "/etc/nginx/conf.d"
+          name: verynginx
       restartPolicy: "Always"
-      volumes:
-        - name: verynginx-cfg
-          persistentVolumeClaim:
-            claimName: verynginx-claim

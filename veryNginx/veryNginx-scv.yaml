@@ -15,7 +15,31 @@ spec:
   selector:
     name: verynginx-pod
 
-# docker build -t 192.168.1.4:5000/verynginx-alpine .
-# docker run -d --name=verynginx -p 9999:80 192.168.1.4:5000/verynginx-alpine
+# docker build -t 192.168.1.4:5000/verynginx-alpine:v0.3.3.1 .
+# docker run -d --name=verynginx -p 9999:80 192.168.1.4:5000/verynginx-alpine:v0.3.3.1
 # docker logs --tail 30 verynginx
 # 浏览器打开 http://192.168.1.4:9999/verynginx/index.html  默认账户verynginx/verynginx
+
+# verynginx/dashboard/js/data_stat.js 改中文 没见效果
+
+# data_stat.current_group = function(){
+#     var group = null;
+#     if ($("#def_btn").text() == 'All') {
+#         group = 'persistent';
+#     } else {
+#         group = 'temporary';
+#     };
+    
+#     return group;
+# }
+
+# data_stat.current_group = function(){
+#     var group = null;
+#     if ($("#def_btn").text() == 'Temporary') {
+#         group = 'temporary';
+#     } else {
+#         group = 'persistent';
+#     };
+    
+#     return group;
+# }

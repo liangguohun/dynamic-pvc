@@ -17,10 +17,10 @@ data_stat.search = function( s ){
 
 data_stat.current_group = function(){
     var group = null;
-    if ($("#def_btn").text() == 'All') {
-        group = 'persistent';
-    } else {
+    if ($("#def_btn").text() == 'Temporary') {
         group = 'temporary';
+    } else {
+        group = 'persistent';
     };
     
     return group;

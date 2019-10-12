@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: verynginx
-        image: 192.168.1.4:5000/verynginx-alpine
+        image: 192.168.1.4:5000/verynginx-alpine:v0.3.3.1
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
@@ -26,8 +26,13 @@ spec:
         volumeMounts:
         - name: verynginx-cfg
           mountPath: /opt/verynginx/verynginx/configs/
+        - name: nginx
+          mountPath: /var/nginx/
       restartPolicy: "Always"
       volumes:
       - name: verynginx-cfg
         persistentVolumeClaim:
           claimName: verynginx-cfg
+      - name: nginx
+        persistentVolumeClaim:
+          claimName: nginx          

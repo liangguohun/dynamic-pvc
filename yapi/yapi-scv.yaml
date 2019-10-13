@@ -13,3 +13,5 @@ spec:
     nodePort: 3200
   selector:
     name: yapi-pod
+  
+# 我拿了较新的1.18.4版本，方便自定义修改，比较撤根据个lock文件判断初始化的

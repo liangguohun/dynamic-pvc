@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: mongo
-        image: mongo:4.2.0-bionic
+        image: 192.168.1.4:5000/mongo:4.2.0-bionic  #开放了远程密码访问
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
@@ -29,9 +29,14 @@ spec:
           name: mongo
         volumeMounts:
           - name: mongo-data
-            mountPath: "/etc/mongo"
+            mountPath: "/data/db"
+          - name: mongo-cfg
+            mountPath: "/data/configdb"
       restartPolicy: "Always"
       volumes:
         - name: mongo-data
           persistentVolumeClaim:
             claimName: mongo-claim
+        - name: mongo-cfg
+          persistentVolumeClaim:
+            claimName: mongo-cfg

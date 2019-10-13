@@ -9,4 +9,17 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Mi
+      storage: 1Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mongo-cfg
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Mi

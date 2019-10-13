@@ -7,10 +7,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 80
+  - port: 3200
     protocol: TCP
-    targetPort: 80
-    name: yapi
-    nodePort: 30080
+    targetPort: yapi
+    nodePort: 3200
   selector:
     name: yapi-pod

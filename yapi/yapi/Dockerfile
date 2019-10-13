@@ -28,7 +28,7 @@ EXPOSE 3000
 
 VOLUME ["/yapi"]
 # 指定配置文件
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 
 # `shadow`: `alpine`默认不集成`usermod`,所以需要这个额外包,因为要用来更改默认`shell`

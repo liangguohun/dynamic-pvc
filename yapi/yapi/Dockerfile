@@ -20,7 +20,7 @@ WORKDIR /yapi/vendors
 COPY config.json /yapi/
 # 复制执行脚本到容器的执行目录
 COPY entrypoint.sh /
-RUN chmod u+x entrypoint.sh
+RUN chmod u+x /entrypoint.sh
 # 写好的vim配置文件复制进去
 COPY .vimrc /root/
 # 向外暴露的端口

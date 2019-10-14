@@ -14,4 +14,7 @@ spec:
   selector:
     name: yapi-pod
   
-# 我拿了较新的1.18.4版本，方便自定义修改，比较撤根据个lock文件判断初始化的
+# 我拿了较新的1.18.4版本，方便自定义修改，根据个lock文件判断初始化的, 采用环境变量方式决定是否初始化
+# 重新运行镜像还是问题的，最好把状态保持或操作一次创建
+# github 有时贼慢，建议把包pull下来不包含node_module cp 进去 建议启动程序后进去手动初始化数据库
+# docker run -d --restart=always --name yapi –e INIT=false -p 3200:3000 192.168.1.4:5000/yapi:yapi-alpine

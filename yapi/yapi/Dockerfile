@@ -1,5 +1,7 @@
 #alpine镜像构建
 FROM alpine:3.8
+#默认不初始化db
+ENV INIT=false
 # 镜像维护者的信息
 LABEL MAINTAINER = 'liangguohun@qq.com(https://github.com/liangguohun)'
 # 基础环境构建
@@ -14,6 +16,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
   && usermod -s /bin/bash root \
   && rm -rf /var/cache/apk/* \
   && mkdir /yapi && cd /yapi && git clone -b v1.8.4-h https://github.com/liangguohun/yapi.git vendors 
+
 # 工作目录
 WORKDIR /yapi/vendors
 # 配置yapi的配置文件
@@ -26,9 +29,8 @@ COPY .vimrc /root/
 # 向外暴露的端口
 EXPOSE 3000
 
-VOLUME ["/yapi"]
 # 指定配置文件
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh", "${INIT}"]
 
 
 # `shadow`: `alpine`默认不集成`usermod`,所以需要这个额外包,因为要用来更改默认`shell`

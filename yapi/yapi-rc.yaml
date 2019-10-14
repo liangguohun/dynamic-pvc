@@ -20,14 +20,8 @@ spec:
         env:
         - name: TZ
           value: Asia/Shanghai
+        - name: INIT
+          value: false
         ports:
         - containerPort: 3000
           name: yapi
-        volumeMounts:
-        - name: yapi-claim  # 挂载的是源码配置及lock锁定初始化的文件，可以随时修改
-          mountPath: /yapi
-      restartPolicy: "Always"
-      volumes:
-      - name: yapi-claim
-        persistentVolumeClaim:
-          claimName: yapi-claim

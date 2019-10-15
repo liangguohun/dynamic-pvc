@@ -61,7 +61,8 @@ RUN addgroup -g 1000 verynginx && adduser -D  -G verynginx -s /bin/false -u 1000
 #    && chown -R www-data:www-data /opt/verynginx \
 #    && rm -rf ./verynginx
 
-RUN rm -f $NGINX_PREFIX/conf/nginx.conf
+RUN rm -f $NGINX_PREFIX/conf/nginx.conf; \
+   mkdir -p /etc/nginx/conf.d/
 COPY verynginx /opt/verynginx/verynginx
 COPY nginx.conf $NGINX_PREFIX/conf/nginx.conf
 RUN chown -R verynginx:verynginx /opt/verynginx

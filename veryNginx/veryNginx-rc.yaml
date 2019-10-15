@@ -28,6 +28,8 @@ spec:
           mountPath: /opt/verynginx/verynginx/configs/
         - name: nginx
           mountPath: /var/nginx/
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d/
       restartPolicy: "Always"
       volumes:
       - name: verynginx-cfg
@@ -35,4 +37,7 @@ spec:
           claimName: verynginx-cfg
       - name: nginx
         persistentVolumeClaim:
-          claimName: nginx          
+          claimName: nginx     
+      - name: nginx-conf
+        persistentVolumeClaim:
+          claimName: verynginx-conf     

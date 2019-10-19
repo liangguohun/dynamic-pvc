@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: gitlab-cfg
+  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -15,6 +16,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: gitlab-log
+  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -28,6 +30,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: gitlab-data
+  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:

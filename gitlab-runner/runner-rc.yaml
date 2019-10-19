@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   name: runner-rc
+  namespace: kube-system
   labels:
     name: runner-rc
 spec:
@@ -15,9 +16,20 @@ spec:
     spec:
       containers:
       - name: runner
-        image: 192.168.1.4:5000/min_gitlab-runner:v1.0
+        # image: 192.168.1.4:5000/min_gitlab-runner:v1.0
+        image: gitlab/gitlab-runner:alpine-v12.3.0
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
           value: Asia/Shanghai
+        volumeMounts:
+        # - mountPath: /etc/gitlab-runner/certs
+        #   name: ca-crt
       restartPolicy: "Always"
+      # volumes:
+      # - name: ca-crt
+      #   configMap:
+      #     name: ca-crt
+      #     items:
+      #     - key: ca.crt
+      #       path: ca.crt

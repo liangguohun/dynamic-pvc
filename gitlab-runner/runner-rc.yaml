@@ -33,3 +33,4 @@ spec:
       #     items:
       #     - key: ca.crt
       #       path: ca.crt
+#kubectl exec -it runner-rc-jjvrd /bin/sh -n kube-system(需要加上命名空间指定不然进不去那)

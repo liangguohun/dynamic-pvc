@@ -20,3 +20,4 @@ spec:
     nodePort: 2222
   selector:
     name: gitlab-pod
+#kubectl exec -it gitlab-rc-x47p8 /bin/sh -n kube-system(需要加上命名空间指定不然进不去那)

@@ -23,14 +23,11 @@ spec:
         - name: TZ
           value: Asia/Shanghai
         volumeMounts:
-        # - mountPath: /etc/gitlab-runner/certs
-        #   name: ca-crt
+          - mountPath: /etc/gitlab-runner
+            name: gitlab-runner
       restartPolicy: "Always"
-      # volumes:
-      # - name: ca-crt
-      #   configMap:
-      #     name: ca-crt
-      #     items:
-      #     - key: ca.crt
-      #       path: ca.crt
+      volumes:
+        - name: gitlab-runner
+          persistentVolumeClaim:
+            claimName: gitlab-runner
 #kubectl exec -it runner-rc-jjvrd /bin/sh -n kube-system(需要加上命名空间指定不然进不去那)

@@ -25,9 +25,9 @@ spec:
         #   - --detach
         ports:
         - name: gitlab-ssh
-          containerPort: 22
+          containerPort: 2222
         - name: gitlab-port
-          containerPort: 80
+          containerPort: 8888
         - name: gitlab-https
           containerPort: 443
         volumeMounts:

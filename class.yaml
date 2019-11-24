@@ -7,4 +7,4 @@ parameters:
   archiveOnDelete: "true"
 reclaimPolicy: Retain #[Retain, Delete,]
 volumeBindingMode: Immediate #[WaitForFirstConsumer,Immediate,]
-allowVolumeExpansion: true #nfs 不支持扩容视乎，还没找到方法
+allowVolumeExpansion: true #nfs 不支持扩容, 最后做法是备份挂载内容，删除重新pvc声明

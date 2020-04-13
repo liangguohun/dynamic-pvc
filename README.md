@@ -13,6 +13,11 @@ chmod u+x init-pvc
 
 kubectl create -f test-claim.yaml -f test-pod.yaml
 
+
+### 创建configmap
+
+kubectl create configmap zoo-conf --from-file=zoo.cfg
+
 ---
 
 ### 查找可用镜像

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper-svc
+  labels: 
+    name: zookeeper-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 2181
+    protocol: TCP
+    targetPort: zk-client
+    name: zk-client
+    nodePort: 2181
+  - port: 2888
+    protocol: TCP
+    targetPort: follower
+    name: follower
+    nodePort: 2888
+  - port: 3888
+    protocol: TCP
+    targetPort: election
+    name: election
+    nodePort: 3888
+  - port: 8080
+    protocol: TCP
+    targetPort: admin-server
+    name: admin-server
+    nodePort: 8080
+  selector:
+    name: zookeeper-pod

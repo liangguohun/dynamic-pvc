@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: zookeeper-rc
+spec:
+  replicas: 1
+  selector:
+    name: zookeeper-pod
+  template:
+    metadata:
+      labels: 
+        name: zookeeper-pod
+    spec:
+      containers:
+      - name: zookeeper
+        image: zookeeper:3.6.0  # https://hub.docker.com/_/zookeeper
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        ports:
+        - containerPort: 2181
+          name: zk-client
+        - containerPort: 2888
+          name: follower
+        - containerPort: 3888
+          name: election
+        - containerPort: 8080
+          name: admin-server
+        volumeMounts:
+        - mountPath: /conf/
+          name: zoo-conf
+          readOnly: true       #不能让容器修改配置的内容
+        - mountPath: /data
+          name: zoo-data
+        - mountPath: /datalog
+          name: zoo-data-log
+        - mountPath: /logs
+          name: zoo-log
+      restartPolicy: "Always"
+      volumes:
+      - name: zoo-data
+        persistentVolumeClaim:
+          claimName: zookeeper-claim
+      - name: zoo-data-log
+        persistentVolumeClaim:
+          claimName: zookeeper-claim
+      - name: zoo-log
+        persistentVolumeClaim:
+          claimName: zookeeper-claim
+      - name: zoo-conf
+        configMap:
+          name: zoo-conf
+          items:
+          - key: zoo.cfg
+            path: zoo.cfg

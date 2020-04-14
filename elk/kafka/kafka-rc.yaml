@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kafka-rc
+spec:
+  replicas: 1
+  selector:
+    name: kafka-pod
+  template:
+    metadata:
+      labels: 
+        name: kafka-pod
+    spec:
+      containers:
+      - name: kafka
+        image: 192.168.1.4:5000/liangguohun/kafka:1.0  # https://hub.docker.com/_/kafka
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        - name: BROKER_ID
+          value: 1
+        - name: LISTENERS
+          value: PLAINTEXT://192.168.1.4:9092
+        - name: ZOOKEEPER_CONNECT
+          value: 192.168.1.4:2181
+        ports:
+        - name: kafka
+          containerPort: 9092
+      restartPolicy: "Always"

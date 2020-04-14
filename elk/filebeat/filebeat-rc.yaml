@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: filebeat-rc
+spec:
+  replicas: 1
+  selector:
+    name: filebeat-pod
+  template:
+    metadata:
+      labels: 
+        name: filebeat-pod
+    spec:
+      containers:
+      - name: filebeat
+        image: elastic/filebeat:7.6.2  # https://hub.docker.com/r/elastic/filebeat
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+      restartPolicy: "Always"

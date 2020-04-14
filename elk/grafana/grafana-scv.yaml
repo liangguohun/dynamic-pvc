@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-svc
+  labels: 
+    name: grafana-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 4000                # 供集群中其它服务访问的端口
+    protocol: TCP
+    targetPort: grafana-port  # 后端pod中container暴露的端口
+    name: grafana-port
+    nodePort: 4000            # 节点暴露的端口
+  selector:
+    name: grafana-pod

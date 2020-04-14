@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: es-rc
+spec:
+  replicas: 1
+  selector:
+    name: es-pod
+  template:
+    metadata:
+      labels: 
+        name: es-pod
+    spec:
+      containers:
+      - name: es
+        image: elasticsearch:7.6.2  # https://hub.docker.com/_/es
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        - name: discovery.type
+          value: single-node
+        ports:
+        - containerPort: 9200
+          name: es-outer
+        - containerPort: 9300
+          name: es-inner
+      restartPolicy: "Always"

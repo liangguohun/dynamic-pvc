@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-svc
+  labels: 
+    name: es-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 9201
+    protocol: TCP
+    targetPort: es-outer  # 9200作为Http协议，主要用于外部通讯
+    name: es-outer
+    nodePort: 9201
+  - port: 9300
+    protocol: TCP
+    targetPort: es-inner  # 9300作为Tcp协议，jar之间就是通过tcp协议通讯 ES集群之间是通过9300进行通讯
+    name: es-inner
+    nodePort: 9300
+  selector:
+    name: es-pod

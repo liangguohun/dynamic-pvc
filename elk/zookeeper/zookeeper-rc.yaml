@@ -31,6 +31,9 @@ spec:
         - mountPath: /conf/
           name: zoo-conf
           readOnly: true       #不能让容器修改配置的内容
+        # envFrom:               # env 挂载不会热更 vsc快速注释ctrl + k + c/ctrl + k + u
+        # - configMapRef:
+        #     name: zoo-conf
         - mountPath: /data
           name: zoo-data
         - mountPath: /datalog
@@ -50,7 +53,7 @@ spec:
           claimName: zookeeper-claim
       - name: zoo-conf
         configMap:
-          name: zoo-conf
+          name: zoo-conf  # volume方式可以10s后热更
           items:
           - key: zoo.cfg
             path: zoo.cfg

@@ -21,6 +21,9 @@ kubectl create configmap zoo-conf --from-file=zoo.cfg
 ### 删除节点
 kubectl delete node slave0
 
+### 删除异常容器
+kubectl delete pods zookeeper-rc-6vxl7 --grace-period=0 --force 
+
 kubectl delete type typename
 type 是资源类型，可以是node, pod, rs, rc, deployment, service等等，typename是这个资源的名称
 

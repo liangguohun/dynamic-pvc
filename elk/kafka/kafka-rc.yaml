@@ -19,11 +19,11 @@ spec:
         - name: TZ
           value: Asia/Shanghai
         - name: BROKER_ID
-          value: 1
+          value: "1"
         - name: LISTENERS
-          value: PLAINTEXT://192.168.1.4:9092
+          value: "PLAINTEXT://192.168.1.4:9092"
         - name: ZOOKEEPER_CONNECT
-          value: 192.168.1.4:2181
+          value: "192.168.1.4:2181"
         ports:
         - name: kafka
           containerPort: 9092

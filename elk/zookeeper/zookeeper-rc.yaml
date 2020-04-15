@@ -30,25 +30,15 @@ spec:
         volumeMounts:
         - mountPath: /conf/
           name: zoo-conf
-          readOnly: true       #不能让容器修改配置的内容
+        # readOnly: true       #不能让容器修改配置的内容
         # envFrom:               # env 挂载不会热更 vsc快速注释ctrl + k + c/ctrl + k + u
         # - configMapRef:
         #     name: zoo-conf
-        - mountPath: /data
+        - mountPath: /workspace/
           name: zoo-data
-        - mountPath: /datalog
-          name: zoo-data-log
-        - mountPath: /logs
-          name: zoo-log
       restartPolicy: "Always"
       volumes:
       - name: zoo-data
-        persistentVolumeClaim:
-          claimName: zookeeper-claim
-      - name: zoo-data-log
-        persistentVolumeClaim:
-          claimName: zookeeper-claim
-      - name: zoo-log
         persistentVolumeClaim:
           claimName: zookeeper-claim
       - name: zoo-conf

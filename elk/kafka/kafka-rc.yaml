@@ -24,7 +24,16 @@ spec:
           value: "PLAINTEXT://:9092" #org.apache.kafka.common.KafkaException: Socket server failed to bind to 192.168.1.4:9092: Address not available. 不要填ip不然报此错
         - name: ZOOKEEPER_CONNECT
           value: "192.168.1.4:2181"
+        - name: ZOOKEEPER_DATADIR
+          value: "/workspace/data"
         ports:
         - name: kafka
           containerPort: 9092
+        volumeMounts:
+        - mountPath: /data
+          name: log-data
       restartPolicy: "Always"
+      volumes:
+      - name: log-data
+        persistentVolumeClaim:
+          claimName: kafka-claim

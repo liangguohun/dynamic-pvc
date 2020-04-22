@@ -28,12 +28,10 @@ spec:
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: "Hgxxmm.@6"
-        - name: TZ
-          value: Asia/Shanghai
         volumeMounts:
           - name: mysql-data
             mountPath: "/var/lib/mysql"
-          - name: mysql-conf
+          - name: mysql-conf 
             mountPath: "/etc/mysql/conf.d"
       restartPolicy: "Always"
       volumes:
@@ -41,5 +39,8 @@ spec:
           persistentVolumeClaim:
             claimName: mysql-claim
         - name: mysql-conf
-          persistentVolumeClaim:
-            claimName: cfg-claim
+          configMap: 
+            name: mysql-conf
+            items:
+            - key: our-mysql.cnf
+              path: our-mysql.cnf    

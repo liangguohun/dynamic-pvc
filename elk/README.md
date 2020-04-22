@@ -14,7 +14,11 @@ dos2unix zoo.cfg
 kubectl exec -it zookeeper-rc-4s9dw /bin/sh
 
 kafka
-
+> jps -l #查看java进程pid
+创建topic
+/var/app/bin/kafka-topics.sh --create --zookeeper 192.168.1.4:2181 --replication-factor 1 --partitions 1 --topic test
+查看主题
+/var/app/bin/kafka-topics.sh --describe --zookeeper 192.168.1.4:2181 --topic test
 
 filebeat
 

@@ -19,9 +19,9 @@ spec:
         - name: TZ
           value: Asia/Shanghai
         - name: BROKER_ID
-          value: "1"
+          value: "0"
         - name: LISTENERS
-          value: "PLAINTEXT://192.168.1.4:9092"
+          value: "PLAINTEXT://:9092" #org.apache.kafka.common.KafkaException: Socket server failed to bind to 192.168.1.4:9092: Address not available. 不要填ip不然报此错
         - name: ZOOKEEPER_CONNECT
           value: "192.168.1.4:2181"
         ports:

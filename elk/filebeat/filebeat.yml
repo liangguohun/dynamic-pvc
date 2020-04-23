@@ -1,0 +1,50 @@
+#ilebeat.config:
+#  modules:
+#    path: ${path.config}/modules.d/*.yml
+#    reload.enabled: false
+
+#processors:
+#- add_cloud_metadata: ~
+#- add_docker_metadata: ~
+
+#output.elasticsearch:
+#  hosts: '${ELASTICSEARCH_HOSTS:elasticsearch:9200}'
+#  username: '${ELASTICSEARCH_USERNAME:}'
+#  password: '${ELASTICSEARCH_PASSWORD:}'
+
+
+
+filebeat.inputs:
+- type: log
+  enable: true
+  paths:
+    - /db/data/sql-slow.log
+  fields:
+    log_topic: mysqlslowlogs
+  exclude_lines: ['^\# Time']
+  multiline:
+    pattern: '^\# Time|^\# User'
+    negate: true
+    match: after
+
+
+processors:
+ - drop_fields:
+    fields: ["beat" ,"input" , "source" ,"offset" ,"prospector"]
+
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+output.kafka:
+  enabled: true
+  hosts: ["192.168.1.4:9092"]
+  topic: '%{[fields.log_topic]}'
+  partition.round_robin:
+    reachable_only: true
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+logging.level: debug
+

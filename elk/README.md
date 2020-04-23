@@ -30,7 +30,13 @@ kubectl exec -it zookeeper-rc-4s9dw /bin/sh
 ### 查看主题
 /var/app/bin/kafka-topics.sh --describe --zookeeper 192.168.1.4:2181 --topic test
 
-filebeat
+## filebeat
+/usr/share/filebeat/ 镜像的安装路径
+### 配置文件挂载 filebeat.yml
+kubectl create configmap filebeat-conf --from-file=filebeat.yml
+####      
+/usr/local/bin/docker-entrypoint: line 8: exec: filebeat: not found 
+
 
 logstash
 

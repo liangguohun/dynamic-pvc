@@ -18,4 +18,17 @@ spec:
         env:
         - name: TZ
           value: Asia/Shanghai
+        volumeMounts:
+        - mountPath: /usr/share/filebeat/filebeat.yml
+          name: filebeat-conf
+          subPath: filebeat.yml
+        - mountPath: /db/data/
+          name: filebeat-logs
       restartPolicy: "Always"
+      volumes:
+      - name: filebeat-logs
+        persistentVolumeClaim:
+          claimName: mysql-claim
+      - name: filebeat-conf
+        configMap:
+          name: filebeat-conf

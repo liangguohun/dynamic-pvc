@@ -38,8 +38,13 @@ kubectl create configmap filebeat-conf --from-file=filebeat.yml
 /usr/local/bin/docker-entrypoint: line 8: exec: filebeat: not found 
 
 
-logstash
-
+## logstash
+''' /usr/share/logstash/
+kubectl create configmap logstash-pipelines --from-file=pipelines.yml
+path.config 不指明具体文件的话则为目录下的logstash.conf
+我这都是对应具体的
+kubectl create configmap mysql-log --from-file=mysql-log.conf
+'''
 ## es
 
 

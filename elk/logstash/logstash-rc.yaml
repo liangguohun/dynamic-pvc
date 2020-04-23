@@ -18,4 +18,18 @@ spec:
         env:
         - name: TZ
           value: Asia/Shanghai
+        volumeMounts:
+        - mountPath: /usr/share/logstash/config/pipelines.yml
+          name: logstash-pipelines
+          subPath: pipelines.yml
+        - mountPath: /usr/share/logstash/pipeline/mysql-log.conf
+          name: mysql-log
+          subPath: mysql-log.conf
       restartPolicy: "Always"
+      volumes:
+      - name: logstash-pipelines
+        configMap:
+          name: logstash-pipelines
+      - name: mysql-log 
+        configMap:
+          name: mysql-log

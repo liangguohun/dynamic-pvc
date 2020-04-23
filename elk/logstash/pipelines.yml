@@ -1,0 +1,2 @@
+- peline.id: mysql
+  path.config: "/usr/share/logstash/pipeline/mysql-log.conf"

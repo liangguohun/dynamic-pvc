@@ -1,0 +1,6 @@
+# 用于指标收集 绑定ip 端口metris resf
+http.host: "0.0.0.0"
+# 监控
+xpack.monitoring.elasticsearch.hosts: [ "http://192.168.1.4:9201" ]
+# xpack.monitoring.elasticsearch.username: "logstash_system" 
+# xpack.monitoring.elasticsearch.password: "changeme"

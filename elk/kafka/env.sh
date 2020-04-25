@@ -1,16 +1,10 @@
 #!/bin/sh
 
-BROKER_ID=${BRODER_ID:-"0"}
-LISTENERS=${LISTENERS:-"PLAINTEXT://:9092"}
-ZOOKEEPER_CONNECT=${ZOOKEEPER_CONNECT:-"localhost:2181"}
 ZOOKEEPER_DATADIR=${ZOOKEEPER_DATADIR:-"/tmp/zookeeper"}
-
-sed -i "s/^broker.id=.*$/broker.id=$BROKER_ID/" /var/app/config/server.properties
-sed -i "s;^#listeners=.*$;listeners=$LISTENERS;g" /var/app/config/server.properties
-sed -i "s/^zookeeper.connect=.*$/zookeeper.connect=$ZOOKEEPER_CONNECT/" /var/app/config/server.properties
 
 sed -i "s/^dataDir=.*$/dataDir=$ZOOKEEPER_DATADIR/" /var/app/config/zookeeper.properties
 
-sed -i "s#/tmp/kafka-logs#/data#g" /var/app/config/server.properties
-
-/var/app/bin/kafka-server-start.sh /var/app/config/server.properties
+grep ^[^#] /var/app/config/server.properties > /var/app/config/new-server.properties
+ADVERTISED_HOST_NAME=${KAFKA_ADVERTISED_HOST_NAME:-"127.0.0.1"}
+echo "advertised.listeners=PLAINTEXT://${ADVERTISED_HOST_NAME}:9192" >> /var/app/config/new-server.properties
+/var/app/bin/kafka-server-start.sh /var/app/config/new-server.properties

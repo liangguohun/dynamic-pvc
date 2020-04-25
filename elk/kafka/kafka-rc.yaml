@@ -11,29 +11,39 @@ spec:
       labels: 
         name: kafka-pod
     spec:
+      hostAliases:
+      - ip: "192.168.1.5"
+        hostnames:
+        - "fuck.kafka"
       containers:
       - name: kafka
-        image: 192.168.1.4:5000/liangguohun/kafka:1.0  # https://hub.docker.com/_/kafka
+        image: 192.168.1.4:5000/liangguohun/kafka:1.0 
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
           value: Asia/Shanghai
-        - name: BROKER_ID
-          value: "0"
-        - name: LISTENERS
-          value: "PLAINTEXT://:9092" #org.apache.kafka.common.KafkaException: Socket server failed to bind to 192.168.1.4:9092: Address not available. 不要填ip不然报此错
-        - name: ZOOKEEPER_CONNECT
-          value: "192.168.1.4:2181"
+        - name: KAFKA_ADVERTISED_HOST_NAME 
+          valueFrom: 
+            fieldRef: 
+              fieldPath: status.hostIP
         - name: ZOOKEEPER_DATADIR
           value: "/workspace/data"
         ports:
         - name: kafka
           containerPort: 9092
+        - name: kafka-out
+          containerPort: 9192
         volumeMounts:
-        - mountPath: /data
+        - mountPath: /tmp/kafka-logs 
           name: log-data
+        - mountPath: /var/app/config/server.properties 
+          name: kafka-conf
+          subPath: server.properties
       restartPolicy: "Always"
       volumes:
       - name: log-data
         persistentVolumeClaim:
           claimName: kafka-claim
+      - name: kafka-conf
+        configMap:
+          name: kafka-conf

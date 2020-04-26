@@ -11,9 +11,5 @@ spec:
       port: 9092
       targetPort: kafka
       nodePort: 9092
-    - name: kafka-out
-      port: 9192
-      targetPort: kafka-out
-      nodePort: 9192
   selector:
-    name: kafka
+    name: kafka-pod 

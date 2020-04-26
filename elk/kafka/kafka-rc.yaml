@@ -11,10 +11,12 @@ spec:
       labels: 
         name: kafka-pod
     spec:
+#      hostNetwork: true
+#      dnsPolicy: ClusterFirstWithHostNet
       hostAliases:
-      - ip: "192.168.1.5"
-        hostnames:
-        - "fuck.kafka"
+#      - ip: "192.168.1.5"
+#        hostnames:
+#        - "fuck.kafka"
       containers:
       - name: kafka
         image: 192.168.1.4:5000/liangguohun/kafka:1.0 
@@ -31,16 +33,19 @@ spec:
         ports:
         - name: kafka
           containerPort: 9092
-        - name: kafka-out
-          containerPort: 9192
         volumeMounts:
         - mountPath: /tmp/kafka-logs 
           name: log-data
         - mountPath: /var/app/config/server.properties 
           name: kafka-conf
           subPath: server.properties
+        - mountPath: /var/run/docker.sock
+          name: connect
       restartPolicy: "Always"
       volumes:
+      - name: connect
+        hostPath: 
+          path: /var/run/docker.sock
       - name: log-data
         persistentVolumeClaim:
           claimName: kafka-claim

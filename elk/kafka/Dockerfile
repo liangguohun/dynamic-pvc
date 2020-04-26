@@ -15,6 +15,6 @@ ENV PATH /var/app/bin:$PATH
 COPY env.sh /env.sh
 RUN chmod +x env.sh
 
-EXPOSE 9092 9192
+EXPOSE 9092
 
 ENTRYPOINT ["/env.sh"]

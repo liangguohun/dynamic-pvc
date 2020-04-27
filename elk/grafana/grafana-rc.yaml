@@ -21,4 +21,16 @@ spec:
         ports:
         - containerPort: 3000
           name: grafana-port       # 默认管理员账号 admin/admin
+        volumeMounts:
+        - mountPath: /var/lib/grafana
+          name: grafana-data
+        - mountPath: /usr/share/grafana/conf
+          name: grafana-conf
       restartPolicy: "Always"
+      volumes:
+      - name: grafana-data
+        persistentVolumeClaim: 
+          claimName: grafana-data
+      - name: grafana-conf
+        persistentVolumeClaim: 
+          claimName: grafana-conf

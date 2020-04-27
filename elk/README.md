@@ -64,5 +64,10 @@ pipelines 参数写错
 ## es
 
 
-grafana
-
+## grafana
+```
+先注释掉grafana-conf
+(镜像的WORKDIR /usr/share/grafana)
+kubectl cp grafana-rc-6mt6n:conf ./conf
+将配置的内容放到挂载的nfs目录下
+```

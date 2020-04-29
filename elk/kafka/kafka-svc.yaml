@@ -12,4 +12,5 @@ spec:
       targetPort: kafka
       nodePort: 9092
   selector:
-    name: kafka-pod 
+    app: kafka-pod
+#    name: kafka-pod 

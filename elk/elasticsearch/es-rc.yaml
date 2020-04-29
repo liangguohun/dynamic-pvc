@@ -25,4 +25,12 @@ spec:
           name: es-outer
         - containerPort: 9300
           name: es-inner
+        volumeMounts:
+        - mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+          name: es-conf
+          subPath: elasticsearch.yml
       restartPolicy: "Always"
+      volumes: 
+      - name: es-conf
+        configMap:
+          name: es-conf

@@ -94,6 +94,7 @@ kubectl create configmap es-conf --from-file=elasticsearch.yml
 需要进到mysql容器去
 cd /var/lib/mysql
 chmod o+r sql_slow.log
+chmod 777 sql_slow.log (sleep 没有创建慢查询记录是真没有慢查询)
 ```
 
 

@@ -11,6 +11,10 @@ spec:
       labels: 
         name: logstash-pod
     spec:
+#      hostAliases:
+#      - ip: "10.102.176.82"
+#        hostnames:
+#        - "fuck.kafka"
       containers:
       - name: logstash
         image: logstash:7.6.2  # https://hub.docker.com/_/logstash
@@ -28,6 +32,9 @@ spec:
         - mountPath: /usr/share/logstash/pipeline/mysql-log.conf
           name: mysql-log
           subPath: mysql-log.conf
+        - mountPath: /usr/share/logstash/pipeline/nginx-log.conf
+          name: nginx-log
+          subPath: nginx-log.conf
       restartPolicy: "Always"
       volumes:
       - name: logstash-conf
@@ -39,3 +46,6 @@ spec:
       - name: mysql-log 
         configMap:
           name: mysql-log
+      - name: nginx-log 
+        configMap:
+          name: nginx-log

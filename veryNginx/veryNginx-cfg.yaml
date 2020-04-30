@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: verynginx-cfg
-  namespace: kube-system
+#  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -16,7 +16,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: verynginx-conf
-  namespace: kube-system
+#  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -30,7 +30,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nginx
-  namespace: kube-system
+#  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:

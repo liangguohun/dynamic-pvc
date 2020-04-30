@@ -2,3 +2,11 @@
   path.config: "/usr/share/logstash/pipeline/mysql-log.conf"
   pipeline.workers: 3
   queue.type: persisted
+- pipeline.id: cloud
+  path.config: "/usr/share/logstash/pipeline/cloud-log.conf"
+  pipeline.workers: 3
+  queue.type: persisted
+- pipeline.id: nginx
+  path.config: "/usr/share/logstash/pipeline/nginx-log.conf"
+  pipeline.workers: 3
+  queue.type: persisted

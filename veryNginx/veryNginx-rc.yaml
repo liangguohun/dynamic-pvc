@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   name: verynginx-rc
-  namespace: kube-system
+#  namespace: kube-system
   labels:
     name: verynginx-rc
 spec:
@@ -31,6 +31,9 @@ spec:
           mountPath: /var/nginx/
         - name: nginx-conf
           mountPath: /etc/nginx/conf.d/
+        - name: nginx-base
+          mountPath: /opt/verynginx/openresty/nginx/conf/nginx.conf
+          subPath: nginx.conf
       restartPolicy: "Always"
       volumes:
       - name: verynginx-cfg
@@ -42,3 +45,6 @@ spec:
       - name: nginx-conf
         persistentVolumeClaim:
           claimName: verynginx-conf     
+      - name: nginx-base
+        configMap: 
+          name: nginx-base

@@ -22,13 +22,23 @@ spec:
         - mountPath: /usr/share/filebeat/filebeat.yml
           name: filebeat-conf
           subPath: filebeat.yml
-        - mountPath: /db/data/
-          name: filebeat-logs
+        - mountPath: /mysql/
+          name: mysql-logs
+        - mountPath: /cloud/
+          name: cloud-logs
+        - mountPath: /nginx/
+          name: nginx-logs
       restartPolicy: "Always"
       volumes:
-      - name: filebeat-logs
+      - name: mysql-logs
         persistentVolumeClaim:
           claimName: mysql-claim
+      - name: cloud-logs
+        persistentVolumeClaim:
+          claimName: cloud-claim
+      - name: nginx-logs
+        persistentVolumeClaim:
+          claimName: nginx       
       - name: filebeat-conf
         configMap:
           name: filebeat-conf

@@ -18,7 +18,7 @@ filebeat.inputs:
 - type: log
   enable: true
   paths:
-    - /db/data/sql-slow.log
+    - /mysql/sql-slow.log
   fields:
     log_topic: mysqlslowlogs
   exclude_lines: ['^\# Time']
@@ -26,7 +26,28 @@ filebeat.inputs:
     pattern: '^\# Time|^\# User'
     negate: true
     match: after
-
+- type: log
+  enable: true
+  paths:
+    - /cloud/*.log          # 日志目录的位置 
+  fields:
+    log_topic: cloud-logs
+  exclude_lines: ['^DEBUG']
+  multiline:
+    pattern: ^\[
+    negate: true
+    match: after
+- type: log
+  enable: true
+  paths:
+    - /nginx/access.log          # 日志目录的位置
+  fields:
+    log_topic: nginx-logs
+  exclude_lines: ['^DEBUG']
+  multiline:
+    pattern: ^\[
+    negate: true
+    match: after
 
 processors:
  - drop_fields:

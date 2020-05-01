@@ -1,0 +1,371 @@
+{
+    "template": "nginxlogs*",
+    "order": 1,
+    "settings": {
+        "number_of_shards": "5",
+        "number_of_replicas": "1"
+    },
+    "mappings": {
+        "doc": {
+            "properties": {
+                "referer": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "remote_addr": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "request": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "agent": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "lon": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "lat": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "geoip": {
+                    "properties": {
+                        "timezone": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "ip": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "latitude": {
+                            "type": "float"
+                        },
+                        "coordinates": {
+                            "type": "float"
+                        },
+                        "continent_code": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "city_name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "country_code2": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "country_name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "country_code3": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "location": {
+                            "type": "geo_point",
+                            "ignore_malformed": "true"
+                        },
+                        "region_name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "longitude": {
+                            "type": "float"
+                        },
+                        "region_code": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x_forwarded": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "scheme": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "request_method": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "http_host": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "uri": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "accessip_list": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "ups_resp_time": {
+                    "type": "float"
+                },
+                "hostname": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "@timestamp": {
+                    "type": "date"
+                },
+                "request_time": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "bytes": {
+                    "type": "long"
+                },
+                "upstr_addr": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "nginx_ip": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "upstr_host": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "user_agent": {
+                    "properties": {
+                        "patch": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "major": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "minor": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "os": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "build": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "os_name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "device": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "ignore_above": 256,
+                                    "type": "keyword"
+                                }
+                            }
+                        }
+                    }
+                },
+                "server_protocol": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "ignore_above": 256,
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "status": {
+                    "type": "long"
+                }
+            }
+        }
+    }
+}

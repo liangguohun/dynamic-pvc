@@ -79,6 +79,8 @@ http://192.168.1.4:9201/_cat/health?v
 http://192.168.1.4:9201/_cat/nodes?v
 查询所有索引
 http://192.168.1.4:9201/_cat/indices?v
+查看索引模板
+http://192.168.1.4:9201/_template/nginxlogs*
 配置
 https://www.cnblogs.com/sxdcgaq8080/p/10031744.html
 https://www.cnblogs.com/jiaosf/p/11604274.html
@@ -90,11 +92,21 @@ action.auto_create_index: mysql-slowlog-*,
 kubectl cp es-rc-2m2br:config/elasticsearch.yml ./
 kubectl create configmap es-conf --from-file=elasticsearch.yml 
 
+查看具体索引
+http://192.168.1.4:9201/nginxlogs-2020.05.01?pretty
+
 索引没有出来，是mysql 日志文件的访问权限问题
 需要进到mysql容器去
 cd /var/lib/mysql
 chmod o+r sql_slow.log
 chmod 777 sql_slow.log (sleep 没有创建慢查询记录是真没有慢查询)
+
+
+创建nginx 模板
+postman post application/json json内容如nginxlogs.json响应"acknowledged": true 则成功
+http://192.168.1.4:9201/_template/nginxlogs*?include_type_name=true
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html
 ```
 
 
@@ -104,4 +116,8 @@ chmod 777 sql_slow.log (sleep 没有创建慢查询记录是真没有慢查询)
 (镜像的WORKDIR /usr/share/grafana)
 kubectl cp grafana-rc-6mt6n:conf ./conf
 将配置的内容放到挂载的nfs目录下
+
+安装插件
+grafana-cli plugins install grafana-piechart-panel
+grafana-cli plugins install grafana-worldmap-panel
 ```

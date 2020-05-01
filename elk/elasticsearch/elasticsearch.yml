@@ -1,3 +1,5 @@
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
-action.auto_create_index: mysql-slowlog-*
+action.auto_create_index: true
+http.cors.enabled: true
+http.cors.allow-origin: "*" 

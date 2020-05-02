@@ -31,3 +31,14 @@ type 是资源类型，可以是node, pod, rs, rc, deployment, service等等，t
 
 ### 查找可用镜像
 ./list_img_tags.sh gitlab/gitlabt-ce
+
+
+```
+k8s中command、args和dockerfile中的entrypoint、cmd之间的关系
+当用户同时写了command和args的时候自然是可以覆盖DockerFile中ENTRYPOINT的命令行和参数,那么对于具体情况呢，比如仅仅写了command或者args的时候呢？完整的情况分类如下：
+
+如果command和args均没有写，那么用Docker默认的配置。
+如果command写了，但args没有写，那么Docker默认的配置会被忽略而且仅仅执行.yaml文件的command（不带任何参数的）。
+如果command没写，但args写了，那么Docker默认配置的ENTRYPOINT的命令行会被执行，但是调用的参数是.yaml中的args。
+如果如果command和args都写了，那么Docker默认的配置被忽略，使用.yaml的配置
+```

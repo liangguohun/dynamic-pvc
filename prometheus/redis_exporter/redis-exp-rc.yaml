@@ -15,6 +15,7 @@ spec:
       - name: redis-exp
         image: 192.168.1.4:5000/liangguohun/redis_exporter:1.0
         imagePullPolicy: IfNotPresent
+        args: ["--redis.addr", "192.168.1.4:7801", "--redis.password", "2i0PISY4Rq7uiYlQ3Akizw998ih309ldnUBz7npS0yhc6A5acw3Tjj4yjaIrHcj"]
         env:
         - name: TZ
           value: Asia/Shanghai

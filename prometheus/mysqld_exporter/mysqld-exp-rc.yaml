@@ -13,7 +13,8 @@ spec:
     spec:
       containers:
       - name: mysqld-exp
-        image: 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0
+        # image: 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0
+        image:  prom/mysqld-exporter:v0.12.1
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ

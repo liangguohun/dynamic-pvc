@@ -1,4 +1,8 @@
-FROM alpine:3.8
+FROM   quay.io/prometheus/busybox:latest
+LABEL  maintainer="angguohun@qq.com"
+
+ARG ARCH="amd64"
+ARG OS="linux"
 
 COPY /redis_exporter /redis_exporter
 

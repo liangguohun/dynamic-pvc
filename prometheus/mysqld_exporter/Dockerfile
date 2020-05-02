@@ -1,5 +1,4 @@
 FROM   quay.io/prometheus/busybox:latest
-#FROM alpine:3.8
 LABEL  maintainer="angguohun@qq.com"
 
 ARG ARCH="amd64"

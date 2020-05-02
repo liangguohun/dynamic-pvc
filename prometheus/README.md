@@ -14,9 +14,11 @@ http://192.168.1.4:9090/
 ```
 https://github.com/prometheus/mysqld_exporter
 
-go build .
+dos2unix -R *
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build .
 docker build -t 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0 .
-
+docker push 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0
+docker rmi 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0
 后台mysql 进入命令行
 CREATE USER 'exporter'@'%' IDENTIFIED BY 'xxmm.@6';
 GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
@@ -44,8 +46,10 @@ go env -w GO111MODULE=on
 go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 
 构建后根据docker 选择合适的
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build .
 docker build -t 192.168.1.4:5000/liangguohun/redis_exporter:1.0 .
 docker push 192.168.1.4:5000/liangguohun/redis_exporter:1.0
+docker rmi 192.168.1.4:5000/liangguohun/redis_exporter:1.0
 ```
 
 ### rocketmq_exporter

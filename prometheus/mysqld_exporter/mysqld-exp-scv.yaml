@@ -7,10 +7,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9090
+  - port: 9104
     protocol: TCP
     targetPort: mysqld-exp
     name: mysqld-exp
-    nodePort: 9090
+    nodePort: 9104
   selector:
     name: mysqld-exp-pod

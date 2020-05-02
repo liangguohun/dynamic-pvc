@@ -17,6 +17,10 @@ https://github.com/prometheus/mysqld_exporter
 go build .
 docker build -t 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0 .
 
+后台mysql 进入命令行
+CREATE USER 'exporter'@'%' IDENTIFIED BY 'xxmm.@6';
+GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';
+FLUSH PRIVILEGES;
 ```
 
 ### redis_exporter

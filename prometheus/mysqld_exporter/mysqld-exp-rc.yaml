@@ -13,20 +13,14 @@ spec:
     spec:
       containers:
       - name: mysqld-exp
-        image: prom/prometheus:v2.17.2  # https://hub.docker.com/_/zookeeper
+        image: 192.168.1.4:5000/liangguohun/mysqld_exporter:1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
           value: Asia/Shanghai
+        - name: DATA_SOURCE_NAME
+          value: "exporter:xxmm.@6@(192.168.1.4:31306)/"         
         ports:
-        - containerPort: 9090
+        - containerPort: 9104
           name: mysqld-exp
-        volumeMounts:
-        - mountPath: /etc/prometheus/prometheus.yml
-          name: prom-conf
-          subPath: prometheus.yml
       restartPolicy: "Always"
-      volumes:
-      - name: prom-conf
-        configMap:
-          name: prom-conf

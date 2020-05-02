@@ -7,10 +7,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9090
+  - port: 5557
     protocol: TCP
     targetPort: rocketmq-exp
     name: rocketmq-exp
-    nodePort: 9090
+    nodePort: 5557
   selector:
     name: rocketmq-exp-pod

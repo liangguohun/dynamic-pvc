@@ -7,10 +7,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9090
+  - port: 9121
     protocol: TCP
     targetPort: redis-exp
     name: redis-exp
-    nodePort: 9090
+    nodePort: 9121
   selector:
     name: redis-exp-pod

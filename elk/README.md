@@ -121,11 +121,3 @@ kubectl cp grafana-rc-6mt6n:conf ./conf
 grafana-cli plugins install grafana-piechart-panel
 grafana-cli plugins install grafana-worldmap-panel
 ```
-
-## prometheus
-
-```
-kubectl create configmap prom-conf --from-file=prometheus.yml
-
-http://192.168.1.4:9090/
-```

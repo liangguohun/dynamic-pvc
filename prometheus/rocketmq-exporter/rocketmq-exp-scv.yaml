@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq-exp-svc
+  labels: 
+    name: rocketmq-exp-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: rocketmq-exp
+    name: rocketmq-exp
+    nodePort: 9090
+  selector:
+    name: rocketmq-exp-pod

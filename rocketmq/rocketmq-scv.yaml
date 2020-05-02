@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq-svc
+  labels: 
+    name: rocketmq-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 9876
+    protocol: TCP
+    targetPort: rocketmq
+    name: rocketmq
+    nodePort: 9876
+  - port: 10909
+    protocol: TCP
+    targetPort: rocketmq-b1
+    name: rocketmq-b1
+    nodePort: 10909
+  - port: 10911
+    protocol: TCP
+    targetPort: rocketmq-b2
+    name: rocketmq-b2
+    nodePort: 10911        
+  - port: 10912
+    protocol: TCP
+    targetPort: rocketmq-b3
+    name: rocketmq-b3
+    nodePort: 10912    
+  selector:
+    name: rocketmq-pod

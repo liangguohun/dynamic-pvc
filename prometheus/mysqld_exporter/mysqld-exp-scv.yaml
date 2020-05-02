@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqld-exp-svc
+  labels: 
+    name: mysqld-exp-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: mysqld-exp
+    name: mysqld-exp
+    nodePort: 9090
+  selector:
+    name: mysqld-exp-pod

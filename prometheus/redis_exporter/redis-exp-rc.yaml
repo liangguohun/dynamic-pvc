@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis-exp-rc
+spec:
+  replicas: 1
+  selector:
+    name: redis-exp-pod
+  template:
+    metadata:
+      labels: 
+        name: redis-exp-pod
+    spec:
+      containers:
+      - name: redis-exp
+        image: prom/prometheus:v2.17.2  # https://hub.docker.com/_/zookeeper
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        ports:
+        - containerPort: 9090
+          name: redis-exp
+        volumeMounts:
+        - mountPath: /etc/prometheus/prometheus.yml
+          name: prom-conf
+          subPath: prometheus.yml
+      restartPolicy: "Always"
+      volumes:
+      - name: prom-conf
+        configMap:
+          name: prom-conf

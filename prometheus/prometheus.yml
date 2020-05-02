@@ -19,3 +19,11 @@ scrape_configs:
 
     static_configs:
       - targets: ['192.168.1.4:9090']
+
+  - job_name: 'mysqld'
+    static_configs:
+    - targets: ['192.168.1.4:9104']
+      labels:
+        env: prod
+        name: mysql-5.6
+        instance: 192.168.1.4:31306

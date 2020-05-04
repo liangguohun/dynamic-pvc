@@ -13,7 +13,7 @@ spec:
      labels:
        app: rocketmq
     spec:
-      containers:     
+      containers:
       - name: broker
         image: 192.168.1.4:5000/liangguohun/rocketmq:ROCKETMQ_VERSION
         command: ["sh","mqbroker", "-n","192.168.1.4:9876"]
@@ -27,20 +27,23 @@ spec:
           - containerPort: 10911
             name: rocketmq-b2
         volumeMounts:
-          - mountPath: /home/rocketmq
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/store
             name: rocketmq-broker
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/broker.conf
+            name: rocketmq-conf
+            subPath: broker.conf
       - name: namesrv
         image: 192.168.1.4:5000/liangguohun/rocketmq:ROCKETMQ_VERSION
         command: ["sh","mqnamesrv"]
         imagePullPolicy: IfNotPresent
         env:
         - name: TZ
-          value: Asia/Shanghai        
+          value: Asia/Shanghai
         ports:
           - containerPort: 9876
             name: rocketmq
         volumeMounts:
-          - mountPath: /home/rocketmq/logs
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/logs
             name: rocketmq-namesrv
       volumes:
       - name: rocketmq-broker
@@ -48,4 +51,7 @@ spec:
           claimName: rocketmq-broker
       - name: rocketmq-namesrv
         persistentVolumeClaim:
-          claimName: rocketmq-namesrv          
+          claimName: rocketmq-namesrv
+      - name: rocketmq-conf
+        configMap:
+          name: rocketmq-conf

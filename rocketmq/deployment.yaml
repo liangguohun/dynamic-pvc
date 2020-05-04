@@ -27,9 +27,9 @@ spec:
           - containerPort: 10911
             name: rocketmq-b2
         volumeMounts:
-          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/store
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/data/store
             name: rocketmq-broker
-          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/broker.conf
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/conf/broker.conf
             name: rocketmq-conf
             subPath: broker.conf
       - name: namesrv
@@ -43,7 +43,7 @@ spec:
           - containerPort: 9876
             name: rocketmq
         volumeMounts:
-          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/logs
+          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/data/logs
             name: rocketmq-namesrv
       volumes:
       - name: rocketmq-broker

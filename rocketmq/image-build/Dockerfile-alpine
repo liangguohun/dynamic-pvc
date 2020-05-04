@@ -79,7 +79,7 @@ EXPOSE 10909 10911 10912
 RUN mv ${ROCKETMQ_HOME}/bin/runbroker-customize.sh ${ROCKETMQ_HOME}/bin/runbroker.sh \
  && chmod a+x ${ROCKETMQ_HOME}/bin/runbroker.sh \
  && chmod a+x ${ROCKETMQ_HOME}/bin/mqbroker
-
+RUN chown 777 ${ROCKETMQ_HOME}
 # Export Java options
 RUN export JAVA_OPT=" -Duser.home=/opt"
 

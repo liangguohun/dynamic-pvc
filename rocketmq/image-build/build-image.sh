@@ -40,7 +40,7 @@ checkVersion $ROCKETMQ_VERSION
 # Build rocketmq
 case "${BASE_IMAGE}" in
     alpine)
-        docker build -f Dockerfile-alpine -t 192.168.1.4:5000/liangguohun/rocketmq:${ROCKETMQ_VERSION} --build-arg version=${ROCKETMQ_VERSION} .
+        docker build --no-cache -f Dockerfile-alpine -t 192.168.1.4:5000/liangguohun/rocketmq:${ROCKETMQ_VERSION} --build-arg version=${ROCKETMQ_VERSION} .
     ;;
     centos)
         docker build --no-cache -f Dockerfile-centos -t apacherocketmq/rocketmq:${ROCKETMQ_VERSION} --build-arg version=${ROCKETMQ_VERSION} .

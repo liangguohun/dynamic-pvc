@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rocketmq
+spec:
+  serviceName: "rocketmq"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketmq
+  template:
+    metadata:
+     labels:
+       app: rocketmq
+    spec:
+      containers:     
+      - name: broker
+        image: 192.168.1.4:5000/liangguohun/rocketmq:ROCKETMQ_VERSION
+        command: ["sh","mqbroker", "-n","192.168.1.4:9876"]
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai        
+        ports:
+          - containerPort: 10909
+            name: rocketmq-b1
+          - containerPort: 10911
+            name: rocketmq-b2
+        volumeMounts:
+          - mountPath: /home/rocketmq
+            name: rocketmq-broker
+      - name: namesrv
+        image: 192.168.1.4:5000/liangguohun/rocketmq:ROCKETMQ_VERSION
+        command: ["sh","mqnamesrv"]
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Asia/Shanghai        
+        ports:
+          - containerPort: 9876
+            name: rocketmq
+        volumeMounts:
+          - mountPath: /home/rocketmq/logs
+            name: rocketmq-namesrv
+      volumes:
+      - name: rocketmq-broker
+        persistentVolumeClaim:
+          claimName: rocketmq-broker
+      - name: rocketmq-namesrv
+        persistentVolumeClaim:
+          claimName: rocketmq-namesrv          

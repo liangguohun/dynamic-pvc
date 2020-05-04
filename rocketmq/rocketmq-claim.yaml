@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: rocketmq-claim
+  name: rocketmq-broker
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:
@@ -10,3 +10,17 @@ spec:
   resources:
     requests:
       storage: 1Gi
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: rocketmq-namesrv
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 200Mi

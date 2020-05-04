@@ -21,11 +21,6 @@ spec:
     protocol: TCP
     targetPort: rocketmq-b2
     name: rocketmq-b2
-    nodePort: 10911        
-  - port: 10912
-    protocol: TCP
-    targetPort: rocketmq-b3
-    name: rocketmq-b3
-    nodePort: 10912    
+    nodePort: 10911  
   selector:
-    name: rocketmq-pod
+    app: rocketmq

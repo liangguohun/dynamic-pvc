@@ -27,11 +27,13 @@ spec:
           - containerPort: 10911
             name: rocketmq-b2
         volumeMounts:
-          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/data/store
-            name: rocketmq-broker
+          - mountPath: /home/rocketmq/store
+            name: rocketmq-store
           - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/conf/broker.conf
             name: rocketmq-conf
             subPath: broker.conf
+          - mountPath: /home/rocketmq/logs
+            name: rocketmq-logs
       - name: namesrv
         image: 192.168.1.4:5000/liangguohun/rocketmq:ROCKETMQ_VERSION
         command: ["sh","mqnamesrv"]
@@ -42,16 +44,13 @@ spec:
         ports:
           - containerPort: 9876
             name: rocketmq
-        volumeMounts:
-          - mountPath: /home/rocketmq/rocketmq-ROCKETMQ_VERSION/data/logs
-            name: rocketmq-namesrv
       volumes:
-      - name: rocketmq-broker
+      - name: rocketmq-store
         persistentVolumeClaim:
-          claimName: rocketmq-broker
-      - name: rocketmq-namesrv
+          claimName: rocketmq-store
+      - name: rocketmq-logs
         persistentVolumeClaim:
-          claimName: rocketmq-namesrv
+          claimName: rocketmq-logs
       - name: rocketmq-conf
         configMap:
           name: rocketmq-conf

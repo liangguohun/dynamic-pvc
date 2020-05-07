@@ -60,7 +60,6 @@ RUN set -eux; \
 
 # Copy customized scripts
 COPY scripts/ ${ROCKETMQ_HOME}/bin/
-COPY conf/ ${ROCKETMQ_HOME}/conf/
 
 RUN chown -R ${uid}:${gid} ${ROCKETMQ_HOME}
 
@@ -79,7 +78,7 @@ EXPOSE 10909 10911 10912
 RUN mv ${ROCKETMQ_HOME}/bin/runbroker-customize.sh ${ROCKETMQ_HOME}/bin/runbroker.sh \
  && chmod a+x ${ROCKETMQ_HOME}/bin/runbroker.sh \
  && chmod a+x ${ROCKETMQ_HOME}/bin/mqbroker
-RUN chown 777 ${ROCKETMQ_HOME}
+
 # Export Java options
 RUN export JAVA_OPT=" -Duser.home=/opt"
 

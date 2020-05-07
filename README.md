@@ -27,6 +27,9 @@ kubectl delete pods zookeeper-rc-6vxl7 --grace-period=0 --force
 kubectl delete type typename
 type 是资源类型，可以是node, pod, rs, rc, deployment, service等等，typename是这个资源的名称
 
+可能是deployment 没有rc
+kubectl get deployment
+kubectl delete deployment rocketmq
 ---
 
 ### 查找可用镜像

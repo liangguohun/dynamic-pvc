@@ -45,3 +45,10 @@ k8s中command、args和dockerfile中的entrypoint、cmd之间的关系
 如果command没写，但args写了，那么Docker默认配置的ENTRYPOINT的命令行会被执行，但是调用的参数是.yaml中的args。
 如果如果command和args都写了，那么Docker默认的配置被忽略，使用.yaml的配置
 ```
+
+### 批量删除镜像容器
+```
+倒叙后删除旧的镜像
+docker rmi `docker images | grep cloud-gateway | sort -r | tail -n +2 | awk '{print $3}'`
+docker rm `docker ps -a | grep cloud-gateway | awk '{print $1}'`
+```

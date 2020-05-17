@@ -21,10 +21,10 @@ spec:
         resources:   #QOS级别Burstable  BestEffort < Burstable < Guaranteed
           limits:
             cpu: 4000m # 代表4核
-            memory: 4Gi
+#            memory: 4Gi
           requests:
             cpu: 1000m
-            memory: 4Gi        
+#            memory: 4Gi        
         env:
         - name: TZ
           value: Asia/Shanghai

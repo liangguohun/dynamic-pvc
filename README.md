@@ -52,3 +52,14 @@ k8s中command、args和dockerfile中的entrypoint、cmd之间的关系
 docker rmi `docker images | grep cloud-gateway | sort -r | tail -n +2 | awk '{print $3}'`
 docker rm `docker ps -a | grep cloud-gateway | awk '{print $1}'`
 ```
+
+```
+ --default-ulimit nofile=20480:40960 nproc=1024:2048
+ --ulimit nofile=20480:40960 nproc=1024:2048
+```
+
+### 常用命令
+```
+查看目录占用空间
+du -ah --max-depth=1
+```

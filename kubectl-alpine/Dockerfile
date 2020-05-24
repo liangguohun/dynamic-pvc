@@ -14,3 +14,5 @@ RUN curl -L http://storage.googleapis.com/kubernetes-release/release/${KUBE_LATE
 
 RUN rm -rf /var/cache/apk/*
 
+# docker build -t 192.168.1.4:5000/kubectl:v1.13.0 .
+# docker push 192.168.1.4:5000/kubectl:v1.13.0

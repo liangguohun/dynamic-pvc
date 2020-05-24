@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: skywalking-ui-rc
+  namespace: kube-system
+  labels:
+    name: skywalking-ui-rc
+spec:
+  replicas: 1
+  selector:
+    name: skywalking-ui-pod
+  template:
+    metadata:
+      labels: 
+        name: skywalking-ui-pod
+    spec:
+      containers:
+      - name: skywalking-ui
+        image: apache/skywalking-ui:6.6.0
+        imagePullPolicy: IfNotPresent
+        resources:   #QOS级别Burstable  BestEffort < Burstable < Guaranteed
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 512Mi     
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        - name: SW_OAP_ADDRESS
+          value: skywalking-oap:12800     
+        ports:
+        - name: skywalking-ui 
+          containerPort: 8080              
+      restartPolicy: "Always"

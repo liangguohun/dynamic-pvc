@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: skywalking-svc
+  namespace: kube-system
+  labels: 
+    name: skywalking-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 12800
+    protocol: TCP
+    targetPort: skywalking-rest
+    name: skywalking-rest
+    nodePort: 12800
+  - port: 11800
+    protocol: TCP
+    targetPort: skywalking-grpc
+    name: skywalking-grpc
+    nodePort: 11800
+  selector:
+    name: skywalking-oap-pod
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: skywalking-ui
+  namespace: kube-system
+  labels: 
+    name: skywalking-ui
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: skywalking-ui
+    name: skywalking-ui
+    nodePort: 8666
+  selector:
+    name: skywalking-ui-pod
+#kubectl exec -it skywalking-rc-x47p8 /bin/sh -n kube-system(需要加上命名空间指定不然进不去那)

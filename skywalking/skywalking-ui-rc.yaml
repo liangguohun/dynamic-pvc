@@ -27,7 +27,7 @@ spec:
         - name: TZ
           value: Asia/Shanghai
         - name: SW_OAP_ADDRESS
-          value: skywalking-oap:12800     
+          value: 192.1688.1.4:12800     
         ports:
         - name: skywalking-ui 
           containerPort: 8080              

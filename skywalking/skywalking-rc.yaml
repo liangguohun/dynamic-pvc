@@ -18,16 +18,16 @@ spec:
       - name: skywalking-oap
         image: apache/skywalking-oap-server:6.5.0
         imagePullPolicy: IfNotPresent
-        livenessProbe:  # 用于判断容器是否存活
-          tcpSocket:    # 三种探针http(200/3xx) tcp exec(0)
-            port: 12800
-          initialDelaySeconds: 15
-          periodSeconds: 20
-        readinessProbe: # 用于判断是否启动完成
-          tcpSocket:
-            port: 12800
-          initialDelaySeconds: 15
-          periodSeconds: 20        
+        # livenessProbe:  # 用于判断容器是否存活
+        #   tcpSocket:    # 三种探针http(200/3xx) tcp exec(0)
+        #     port: 12800
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 20
+        # readinessProbe: # 用于判断是否启动完成
+        #   tcpSocket:
+        #     port: 12800
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 20        
         resources:   #QOS级别Burstable  BestEffort < Burstable < Guaranteed
           limits:
             cpu: 2000m

@@ -4,7 +4,8 @@ set -e
 (
 cat <<EOF
 {
-  "insecure-registries":["192.168.1.4:8443","192.168.1.4:5000"]
+  "insecure-registries":["192.168.1.4:5000"],
+  "registry-mirrors":["http://192.168.1.4:8443"]
 }
 EOF
 ) >/etc/docker/daemon.json

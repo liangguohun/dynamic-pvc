@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: skywalking-oap
-        image: apache/skywalking-oap-server:6.5.0
+        image: apache/skywalking-oap-server:6.6.0-es7
         imagePullPolicy: IfNotPresent
         # livenessProbe:  # 用于判断容器是否存活
         #   tcpSocket:    # 三种探针http(200/3xx) tcp exec(0)

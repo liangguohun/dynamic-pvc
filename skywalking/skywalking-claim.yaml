@@ -18,6 +18,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: skywalking-agent
+  namespace: kube-system
   annotations:
     volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
 spec:

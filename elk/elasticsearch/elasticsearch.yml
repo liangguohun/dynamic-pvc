@@ -3,3 +3,11 @@ network.host: 0.0.0.0
 action.auto_create_index: true
 http.cors.enabled: true
 http.cors.allow-origin: "*" 
+# validation_exception","reason":"Validation Failed: 1: this action would add [2] total shards, but this cluster currently has [999]/[1000] maximum shards open;
+# 分片数默认1000 可能不够
+cluster.max_shards_per_node: 10000
+
+node.name: node-1
+discovery.seed_hosts: ["127.0.0.1"]
+# single-node 不支持
+# cluster.initial_master_nodes: ["node-1"]

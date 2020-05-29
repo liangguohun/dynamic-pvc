@@ -62,4 +62,6 @@ docker rm `docker ps -a | grep cloud-gateway | awk '{print $1}'`
 ```
 查看目录占用空间
 du -ah --max-depth=1
+拷贝文件
+kubectl cp -n kube-system skywalking-oap-rc-jg75t:config/application.yml ./
 ```

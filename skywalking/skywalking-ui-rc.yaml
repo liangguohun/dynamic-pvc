@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: skywalking-ui
-        image: apache/skywalking-ui:6.6.0
+        image: apache/skywalking-ui:7.0.0
         imagePullPolicy: IfNotPresent
         resources:   #QOS级别Burstable  BestEffort < Burstable < Guaranteed
           requests:
             memory: 512Mi
           limits:
-            memory: 512Mi     
+            memory: 512Mi
         env:
         - name: TZ
           value: Asia/Shanghai

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: skywalking-oap
-        image: apache/skywalking-oap-server:6.6.0-es7
+        image: apache/skywalking-oap-server:7.0.0-es7
         imagePullPolicy: IfNotPresent
         # livenessProbe:  # 用于判断容器是否存活
         #   tcpSocket:    # 三种探针http(200/3xx) tcp exec(0)
@@ -48,11 +48,11 @@ spec:
             fieldRef:
               fieldPath: metadata.uid
         - name: SW_STORAGE
-          value: elasticsearch
+          value: elasticsearch7
         - name: SW_STORAGE_ES_CLUSTER_NODES
           value: 192.168.1.4:9201
-        - name: SW_NAMESPACE
-          value: hmall
+        - name: SW_NAMESPACE  # 访问es获取集群名字
+          value: docker-cluster
         # - name: SW_ES_USER
         #   value: elastic
         # - name: SW_ES_PASSWORD

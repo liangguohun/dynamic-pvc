@@ -19,7 +19,7 @@ spec:
     name: skywalking-grpc
     nodePort: 11800
   selector:
-    name: skywalking-oap-pod
+    app: skywalking-oap-pod
 
 ---
 apiVersion: v1

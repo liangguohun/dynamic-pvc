@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: skywalking-oap
-        image: apache/skywalking-oap-server:7.0.0-es7
+        image: 192.168.1.4:5000/apache/skywalking-oap-server:7.0.0-es7 # 拉取得最好是自己的nexus 快
         imagePullPolicy: IfNotPresent
         # livenessProbe:  # 用于判断容器是否存活
         #   tcpSocket:    # 三种探针http(200/3xx) tcp exec(0)

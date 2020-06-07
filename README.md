@@ -68,4 +68,6 @@ kubectl cp -n kube-system skywalking-oap-rc-jg75t:config/application.yml ./
 kubectl get rc -n kube-system
 # 如果不加--cascade=false 那么就会连同pod 也一起删除 我这里这么删除是因为出现了顽固的无法界面删除影响ci
 kubectl delete rc cloud-user-09eac -n kube-system 
+
+yum list kubelet --showduplicates | sort -r 
 ```

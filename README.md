@@ -1,4 +1,4 @@
-﻿# dynamic-pvc
+﻿# dynamic-pvc  for v1.18.2
 ## 模板生成k8s pvc 动态创建卷的模板
 
 1、修改执行权限

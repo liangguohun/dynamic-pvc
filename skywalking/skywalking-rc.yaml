@@ -53,6 +53,14 @@ spec:
           value: 192.168.1.4:9201
         - name: SW_NAMESPACE  # 访问es获取集群名字
           value: docker-cluster
+        - name: SW_STORAGE_ES_BULK_ACTIONS  # 默认请求批量写入10条起 生产调大，默认1000
+          value: "10"
+        - name: SW_STORAGE_ES_FLUSH_INTERVAL  # 5s 刷新一次改为3秒
+          value: "5"    
+        - name: SW_STORAGE_ES_CONCURRENT_REQUESTS
+          value: "4"
+        - name: SW_STORAGE_ES_QUERY_MAX_SIZE
+          value: "8000"                       
         # - name: SW_ES_USER
         #   value: elastic
         # - name: SW_ES_PASSWORD

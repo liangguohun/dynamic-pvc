@@ -58,6 +58,14 @@ docker rm `docker ps -a | grep cloud-gateway | awk '{print $1}'`
  --ulimit nofile=20480:40960 nproc=1024:2048
 ```
 
+```
+批量删除命名空间下的资源
+kubectl delete service `kubectl get service -n istio-system | tail -n +2 | awk '{print $1}'` -n istio-system
+kubectl delete deployment `kubectl get deployment -n istio-system | tail -n +2 | awk '{print $1}'` -n istio-system
+kubectl delete namespace istio-system --force --grace-period=0
+
+```
+
 ### 常用命令
 ```
 查看目录占用空间

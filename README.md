@@ -82,3 +82,19 @@ yum list kubelet --showduplicates | sort -r
 调整副本数
 kubectl scale --current-replicas=1 --replicas=2 deployment/kubernetes-dashboard -n kube-system
 ```
+
+## 错误列表
+```
+虚拟机错误放弃后集群起不来
+kubectl cluster-info dump
+The connection to the server 192.168.1.4:6443 was refused - did you specify the right host or port?
+df -h 磁盘空间很足
+查看状态
+systemctl status kubelet
+source ~/.bash_profile
+查看日志
+journalctl -xefu kubelet
+
+Failed to initialize CSINodeInfo: error updating CSINode annotation: timed out waiting for the condition; caused by: Get https://192.168.1.4:6443/apis/storage.k8s.io/v1/csinodes/master: dial tcp 192.168.1.4:6443: connect: connection refused
+
+```

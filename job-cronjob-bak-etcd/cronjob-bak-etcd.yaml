@@ -1,10 +1,11 @@
 apiVersion: batch/v1beta1
 kind: CronJob
+#https://www.cnblogs.com/xzkzzz/p/9963511.html
 metadata:
   name: etcd-disaster-recovery
   namespace: kube-system
 spec:
- schedule: "0 22 * * *"
+ schedule: "0 0/1 * * *"
  jobTemplate:
   spec:
     template:
@@ -13,14 +14,19 @@ spec:
         app: etcd-disaster-recovery
       spec:
         affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
+          nodeAffinity: # 节点亲和性调度 Pod亲和性调度：PodAffinity Pod反亲和性调度：podAntiAffinity 节点选择器： nodeSelector、nodeName
+            requiredDuringSchedulingIgnoredDuringExecution: # 硬亲和性  必须满足亲和性
                   nodeSelectorTerms:
                   - matchExpressions:
                     - key: kubernetes.io/role
                       operator: In
                       values:
                       - master
+                      # 0/3 nodes are available: 3 node(s) didn't match node selector.
+                      # 开启污点，允许调度到 mast> kubectl taint nodes --all node-role.kubernetes.io/master-
+                      # kubectl label node master kubernetes.io/role=master
+                      # kubectl get pods --show-labels
+                      # ls /etc/kubernetes/manifests/ 会在此目录出现本配置
         containers:
         - name: etcd
           image: k8s.gcr.io/etcd:3.4.3-0
@@ -37,19 +43,20 @@ spec:
             - mountPath: "/snapshot"
               name: snapshot
               subPath: data/etcd-snapshot
-            - mountPath: /etc/localtime
-              name: lt-config
-            - mountPath: /etc/timezone
-              name: tz-config
+            # - mountPath: /etc/localtime
+            #   name: lt-config
+            # - mountPath: /etc/timezone
+            #   name: tz-config
         restartPolicy: OnFailure
         volumes:
           - name: snapshot
             persistentVolumeClaim:
-              claimName: cron-nas
-          - name: lt-config
-            hostPath:
-              path: /etc/localtime
-          - name: tz-config
-            hostPath:
-              path: /etc/timezone
+              claimName: etcd-claim
+          # - name: lt-config
+          #   hostPath:
+          #     path: /etc/localtime
+          # - name: tz-config
+          #   hostPath:
+          #     path: /etc/timezone
+          # 这些挂载会报错...
         hostNetwork: true

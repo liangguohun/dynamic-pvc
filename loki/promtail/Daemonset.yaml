@@ -1,0 +1,34 @@
+# A DaemonSet will deploy promtail on every node within a Kubernetes cluster.
+# The DaemonSet deployment is great to collect the logs of all containers within a cluster. It’s the best solution for a single-tenant model.
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: promtail-daemonset
+spec:
+  selector:
+    matchLabels:
+      name: promtail
+  template:
+    metadata:
+      labels:
+        name: promtail
+    spec:
+      serviceAccount: SERVICE_ACCOUNT
+      serviceAccountName: SERVICE_ACCOUNT
+      volumes:
+      - name: logs
+        hostPath:
+          path: HOST_PATH
+      - name: promtail-config
+        configMap:
+          name: promtail-configmap
+      containers:
+      - name: promtail-container
+        image: grafana/promtail
+        args:
+        - -config.file=/etc/promtail/promtail.yaml
+        volumeMounts:
+        - name: logs
+          mountPath: MOUNT_PATH
+        - name: promtail-config
+          mountPath: /etc/promtail

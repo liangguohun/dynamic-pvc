@@ -28,8 +28,17 @@ spec:
         volumeMounts:
           - name: codepush-data
             mountPath: "/data"
+          - name: codepush-config
+            subPath: "config.js"
+            mountPath: "/config.js"
       restartPolicy: "Always"
       volumes:
         - name: codepush-data
           persistentVolumeClaim:
             claimName: codepush-claim
+        - name: codepush-config
+          configMap: 
+            name: codepush-config
+            items:
+            - key: config.js
+              path: config.js

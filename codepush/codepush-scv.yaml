@@ -15,5 +15,9 @@ spec:
     port: 3002
     targetPort: cpweb
     nodePort: 3002
+  - name: codepushlogin
+    port: 3200
+    targetPort: codepushlogin
+    nodePort: 3200
   selector:
     name: codepush-pod

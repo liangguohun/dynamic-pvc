@@ -31,6 +31,9 @@ spec:
           - name: codepush-config
             subPath: "config.js"
             mountPath: "/config.js"
+          - name: codepush-process
+            subPath: "process.json"
+            mountPath: "/process.json"
       restartPolicy: "Always"
       volumes:
         - name: codepush-data
@@ -42,3 +45,9 @@ spec:
             items:
             - key: config.js
               path: config.js
+        - name: codepush-process
+          configMap:
+            name: codepush-config
+            items:
+            - key: process.json
+              path: process.json

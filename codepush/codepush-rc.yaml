@@ -21,10 +21,8 @@ spec:
         - name: TZ
           value: Asia/Shanghai
         ports:
-        - containerPort: 3001
-          name: cpdownload
-        - containerPort: 3002
-          name: cpweb
+        - containerPort: 3200
+          name: codepushlogin
         volumeMounts:
           - name: codepush-data
             mountPath: "/data"

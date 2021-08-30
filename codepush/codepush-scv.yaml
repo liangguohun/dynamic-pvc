@@ -7,14 +7,6 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - name: cpdownload
-    port: 3001
-    targetPort: cpdownload
-    nodePort: 3001
-  - name: cpweb
-    port: 3002
-    targetPort: cpweb
-    nodePort: 3002
   - name: codepushlogin
     port: 3200
     targetPort: codepushlogin

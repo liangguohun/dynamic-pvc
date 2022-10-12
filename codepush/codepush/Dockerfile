@@ -1,4 +1,4 @@
-FROM node:8.11.4-alpine
+FROM node:12.22.12-alpine3.15
 
 RUN npm config set unsafe-perm true
 RUN npm config set registry https://registry.npm.taobao.org/ \
@@ -7,7 +7,7 @@ RUN npm config set registry https://registry.npm.taobao.org/ \
 COPY ./config.js /config.js
 COPY ./process.json /process.json
 
-RUN mkdir -p /data/storage /data/tmp
+RUN mkdir -p /data
 
 VOLUME ["/data"]
 

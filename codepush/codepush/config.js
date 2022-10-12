@@ -12,7 +12,7 @@ config.development = {
   },
   local: {
     storageDir: '/data',
-    downloadUrl: 'http://192.168.1.4:3002/download',
+    downloadUrl: 'http://192.168.1.4:3000/download',
     public: '/download'
   },
   jwt: {
@@ -24,8 +24,7 @@ config.development = {
     dataDir: "/data",
     storageType: "local",
     updateCheckCache: true,
-    rolloutClientUniqueIdCache: true,
-    codePushWebUrl:"http://192.168.1.4:3001"
+    rolloutClientUniqueIdCache: true
   },
   smtpConfig:{
     host: "smtp.aliyun.com",

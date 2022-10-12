@@ -11,7 +11,7 @@ config.development = {
     operatorsAliases: false,
   },
   local: {
-    storageDir: '/data/storage',
+    storageDir: '/data',
     downloadUrl: 'http://192.168.1.4:3002/download',
     public: '/download'
   },
@@ -21,7 +21,7 @@ config.development = {
   common: {
     tryLoginTimes: 4,
     diffNums: 3,
-    dataDir: "/data/tmp",
+    dataDir: "/data",
     storageType: "local",
     updateCheckCache: true,
     rolloutClientUniqueIdCache: true,

@@ -1,6 +1,6 @@
 ## 单机部署
 
-docker run -it --name code-push-server -e TZ=Asia/Shanghai -p 3200:3200 -v $PWD/process.json:/process.json -v $PWD/config.js:/config.js -v $PWD/data/:/data/ -d code-push-server:5.7.1 
+docker run -it --name code-push-server -e TZ=Asia/Shanghai -p 3000:3000 -v $PWD/process.json:/process.json -v $PWD/config.js:/config.js -v $PWD/data/:/data/ -d code-push-server:5.7.1 
 
 ## 初始化数据库
 

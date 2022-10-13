@@ -39,7 +39,6 @@ config.development = {
     default: {
       host: '192.168.1.4',
       port: 7801,
-      password:'2i0PISY4Rq7uiYlQ3Akizw998ih309ldnUBz7npS0yhc6A5acw3Tjj4yjaIrHcj',
       retry_strategy: function (options) {
         if (options.error.code === 'ECONNREFUSED') {
           return new Error('The server refused the connection');

@@ -15,3 +15,15 @@ kubectl create configmap codepush-config --from-file=process.json --from-file=co
 Bearer 在获取token页面获取
 
 curl -X PATCH -H "Authorization: Bearer token" -H "Accept: application/json" -H "Content-Type:application/json" -d '{"oldPassword":"123456","newPassword":"654321"}' http://127.0.0.1:3000/users/password
+
+## 使用
+```
+https://github.com/Microsoft/react-native-code-push
+$ code-push app add bordergirl-ios ios react-native  #iOS版
+$ code-push app add bordergirl-android android react-native #android版
+$ cd bordergirl
+$ npm install
+$ code-push release-react bordergirl-ios ios -d Production #发布到code-push-server ios
+$ code-push release-react bordergirl-android android -d Production #发布code-push-server android
+
+```

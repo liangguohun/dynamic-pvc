@@ -23,8 +23,7 @@ $ code-push app add bordergirl-ios ios react-native  #iOS版
 $ code-push app add bordergirl-android android react-native #android版
 $ cd bordergirl
 $ npm install
-$ code-push release-react bordergirl-ios ios -d Production #发布到code-push-server ios
-$ code-push release-react bordergirl-android android -d Production #发布code-push-server android
+
 
 code-push deployment ls bordergirl-android -k 
 
@@ -35,3 +34,14 @@ Staging(灰度)
 
 
 ```
+
+## 打包发布日常更新灰度回滚操作
+
+npm run bundle-android \
+$ code-push release-react bordergirl-ios ios -d Production #发布到code-push-server ios \
+$ code-push release-react bordergirl-android android -d Production #发布code-push-server android \
+将打包发布流程合二为一 \
+$ code-push release-react bordergirl-android android --t 1.0.0 --dev false -d Staging --des "初始调试" --m true \
+其中参数--t为二进制(.ipa与apk)安装包的的版本, android 在build.gradle内, --dev为是否启用开发者模式(默认为false) \
+--d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新 
+

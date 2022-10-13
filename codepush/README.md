@@ -41,7 +41,8 @@ npm run bundle-android \
 $ code-push release-react bordergirl-ios ios -d Production #发布到code-push-server ios \
 $ code-push release-react bordergirl-android android -d Production #发布code-push-server android \
 将打包发布流程合二为一 \
-$ code-push release-react bordergirl-android android --t 1.0.0 --dev false -d Staging --des "初始调试" --m true \
+$ code-push release-react bordergirl-android android --t 1.0.0 --dev false -d Staging --des "初始调试" --m true -r 50 \
 其中参数--t为二进制(.ipa与apk)安装包的的版本, android 在build.gradle内, --dev为是否启用开发者模式(默认为false) \
---d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新 
+--d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新  \
+-r 50 指灰度更新50%(0-100),一般情况下不需要灰度更新
 

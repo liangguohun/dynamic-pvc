@@ -26,4 +26,12 @@ $ npm install
 $ code-push release-react bordergirl-ios ios -d Production #发布到code-push-server ios
 $ code-push release-react bordergirl-android android -d Production #发布code-push-server android
 
+code-push deployment ls bordergirl-android -k 
+
+Production
+配置生成环境的key 就更新生产的变更
+Staging(灰度)
+测试debug 的包用测试的环境key
+
+
 ```

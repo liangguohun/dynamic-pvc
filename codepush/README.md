@@ -45,6 +45,21 @@ code-push release-react bordergirl-android android --t 1.0.0 --dev false -d Stag
 --d是要发布更新的环境分Production与Staging(默认为Staging)；--des为更新说明；--m 是强制更新  \
 -r 50 指灰度更新50%(0-100),一般情况下不需要灰度更新
 
+## 灰度发布
+```
+Usage: code-push promote <appName> <sourceDeploymentName> <destDeploymentName> [--description <description>] [--mandatory] [--rollout <rolloutPercentage>]
+
+选项：
+  --description, --des  描述  [string] [默认值: null]
+  --disabled, -x        是否禁用该更新  [boolean] [默认值: null]
+  --mandatory, -m       是否强制更新  [boolean] [默认值: null]
+  --rollout, -r         此促进更新推送用户的百分比  [string] [默认值: null]
+
+示例：
+  code-push promote MyApp Staging Production                                   "MyApp"中"Staging"部署的最新更新发布到"Production"部署中
+  code-push promote MyApp Staging Production --des "Production rollout" -r 25  "MyApp"中"Staging"部署的最新更新发布到"Production"部署中, 并且只推送25%的用户
+```
+
 ## 查看历史版本
 code-push deployment history bordergirl-android Staging
 ## 回滚
@@ -57,3 +72,5 @@ code-push app list
 code-push remove <AppName>
 ## 重命名
 code-push app rename  <OriginalAppName>  <name>
+  
+  

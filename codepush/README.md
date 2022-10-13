@@ -10,3 +10,8 @@ docker exec -it code-push-server /bin/sh
 ## 创建配置
 
 kubectl create configmap codepush-config --from-file=process.json --from-file=config.js
+
+## 修改密码
+Bearer 在获取token页面获取
+
+curl -X PATCH -H "Authorization: Bearer token" -H "Accept: application/json" -H "Content-Type:application/json" -d '{"oldPassword":"123456","newPassword":"654321"}' http://127.0.0.1:3000/users/password

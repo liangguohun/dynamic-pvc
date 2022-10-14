@@ -19,4 +19,5 @@ docker run --name verynginx -it -e TZ=Asia/Shanghai -p 8888:8888 \
 ## 修改默认管理员
 
 复制 菜单下config>all configuration 配置写到verynginx-cfg/config.json
-里头修改默认账号
+里头修改默认账号 \
+**没法保存修改是因为config.json 权限不够**

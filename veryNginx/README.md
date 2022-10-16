@@ -9,7 +9,8 @@ http://192.168.1.4/verynginx/index.html 账号密码verynginx/verynginx
 
 ## 单机版启动
 ```
-docker run --name verynginx -it -e TZ=Asia/Shanghai -p 8888:8888 \
+通过防火墙映射进来
+docker run --name verynginx -it -e TZ=Asia/Shanghai --network=bianyuan --ip 192.168.1.2 \
 -v $PWD/nginx.conf:/opt/verynginx/openresty/nginx/conf/nginx.conf \
 -v $PWD/nginx-conf:/etc/nginx/conf.d/ \
 -v $PWD/verynginx-cfg:/opt/verynginx/verynginx/configs/ \

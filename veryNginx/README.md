@@ -21,5 +21,5 @@ docker run --name verynginx -it -e TZ=Asia/Shanghai --network=bianyuan --ip 192.
 
 复制 菜单下config>all configuration 配置写到verynginx-cfg/config.json
 里头修改默认账号 \
-**没法保存修改是因为config.json 权限不够**
+**没法保存修改是因为config.json 权限不够** \
 [防火墙开放端口配置](https://juejin.cn/post/7155178079931858975/)

@@ -1,9 +1,11 @@
 ## 单机部署
 
-* 创建网络 
-docker network create --driver bridge --subnet 192.168.1.0/24 --gateway 192.168.1.1 bianyuan \
--- 我们使用内部网络通讯，对外只通过verynginx 访问 \
-docker run -it --name code-push-server -e TZ=Asia/Shanghai --network=bianyuan --ip 192.168.1.8 -v $PWD/process.json:/process.json -v $PWD/config.js:/config.js -v $PWD/data/:/data/ -d code-push-server:5.7.1 \
+* 创建网络 \
+docker network create --driver bridge --subnet 192.168.1.0/24 --gateway 192.168.1.1 bianyuan
+* 启动容器实例 \
+我们使用内部网络通讯，对外只通过verynginx 访问 \
+docker run -it --name code-push-server -e TZ=Asia/Shanghai --network=bianyuan --ip 192.168.1.8 -v $PWD/process.json:/process.json -v $PWD/config.js:/config.js -v $PWD/data/:/data/ -d code-push-server:5.7.1 
+* 加入网络 \
 运行时加入bianyuan 这个network就可以容器间通讯，不用过多暴露端口 \
 docker network connect bianyuan verynginx
 
